@@ -44,7 +44,7 @@ group :development do
   gem 'spring'
 end
 
-
+gem 'react-rails', '~> 1.4.0'
 gem 'faker'
 gem 'kaminari'
 gem 'bcrypt'

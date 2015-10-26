@@ -1,18 +1,9 @@
-<h1>Login!</h1>
+<h1>Login</h1>
 
-<div class='m4'>
-  <%= form_tag login_path do %>
-    <div class='form-group'>
-      <p> Username: <%= text_field_tag :username, '', class: 'form-control' %></p>
-    </div>
-    <div class='form-group'>
-      <p> Password: <%= password_field_tag :password, '', class: 'form-control' %></p>
-    </div>
-    <div class='form-group'>
-      <p> <%= submit_tag "Submit", class: 'btn btn-primary' %> </p>
-    </div>
-  <% end %>
-</div>
-
+<%= form_tag login_path do %>
+  <p>Username: <%= text_field_tag :username %></p>
+  <p>Password: <%= password_field_tag :password %></p>
+  <p><%= submit_tag "Submit", class: "btn" %></p>
+<% end %>
 
 <p>New here? <%= link_to 'Click here', new_user_path %> to signup</p>
