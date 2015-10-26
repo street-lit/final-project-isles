@@ -7,8 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <main>
+    <% if user_logged_in? %>
+    <%= react_component("navbarLoggedIn") %>
+    <% else %>
+    <%= react_component("navbarLoggedOut") %>
+    <% end %>
 
-<%= yield %>
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
 
+
+    <div class='container'>
+      <div class='row'>
+        <div class='m12'>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <%= params.inspect if Rails.env.development? %>
+      <%= @current_user.inspect if Rails.env.development? %>
+    </footer>
+  </main>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
