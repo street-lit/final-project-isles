@@ -1,0 +1,1 @@
+json.extract! @user, :id, :first_name, :last_name, :email, :username, :age, :city, :state, :twitter, :github, :linkedin, :phone_number, :birthday, :soundcloud, :facebook, :password_digest, :created_at, :updated_at
