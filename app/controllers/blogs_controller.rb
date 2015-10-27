@@ -14,6 +14,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
+    authenticate_user
     @blog = Blog.new
   end
 
@@ -24,11 +25,12 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
+    authenticate_user
     @blog = Blog.new(blog_params)
-
+    @blog.user_id = current_user.id
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
+        format.html { redirect_to @blog, notice: 'New Blog successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
         format.html { render :new }

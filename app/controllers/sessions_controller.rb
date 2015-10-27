@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create # create login session
     #username and password
-    user = User.find_by_email(params[:email])
+    user = User.find_by_username(params[:username])
     if user.present? && user.authenticate(params[:password])
       set_user_session(user)
       redirect_to root_path, notice: "Successfully logged in!"

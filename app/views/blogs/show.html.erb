@@ -6,13 +6,39 @@
 
 <p>
   <strong>User:</strong>
-  <%= @blog.user %>
+  <%= @blog.user.first_name %>
 </p>
 
 <p>
   <strong>Description:</strong>
   <%= @blog.description %>
 </p>
+
+<h4>Posts for <%= @blog.title %></h4>
+
+<table class="">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Date</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blog.posts.each do |blog| %>
+      <tr>
+        <td><%= link_to( "#{blog.post.title}", blog.post ) %></td>
+        <td><%= blog.post.body %></td>
+        <td><%= link_to( "#{blog.post.user.name}", user_path(blog.post.user)) %></td>
+        <td><%= link_to 'Show', blog.post %></td>
+        <td><%= link_to 'Edit', edit_blog.post_path(blog.post) if blog.post.user == @current_user %></td>
+        <td><%= link_to 'Destroy', blog.post, method: :delete, data: { confirm: 'Are you sure?' } if blog.post.user == @current_user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
