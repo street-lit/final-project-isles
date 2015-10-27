@@ -1,1 +1,25 @@
-<h1>This is your user login home page</h1>
+<h1>Home</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Blogs</th>
+      <th>User</th>
+      <th>Description</th>
+      <th>Number of Posts</th>
+      <th colspan="3">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @current_user.blogs.each do |blog| %>
+      <tr>
+        <td><%= link_to( "#{blog.title}", blog ) %></td>
+        <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
+        <td><%= link_to( "#{blog.description}", blog ) %></td>
+        <td><%= "#{blog.posts.count}" %></td>
+        <td><%= link_to 'Show', blog %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
