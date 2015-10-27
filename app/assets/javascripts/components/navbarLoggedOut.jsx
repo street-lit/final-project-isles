@@ -3,7 +3,7 @@ var navbarLoggedOut = React.createClass({
     return (
       <nav className="">
         <div className="nav-wrapper">
-          <a href="/welcome" className="brand-logo">Isles</a>
+          <a href="/home" className="brand-logo">Isles</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><a href="/about">About</a></li>
             <li><a href="/login">Login</a></li>

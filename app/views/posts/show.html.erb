@@ -1,3 +1,7 @@
+<p>
+  <strong>Blog:</strong>
+  <%= @post.blog.title %>
+</p>
 
 <p>
   <strong>Title:</strong>
@@ -10,14 +14,14 @@
 </p>
 
 <p>
-  <strong>Blog:</strong>
-  <%= @post.blog %>
+  <strong>Written By:</strong>
+  <%= @post.user.full_name %>
 </p>
+
+<%= link_to 'Back', posts_path %> |
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <p>
-  <strong>User:</strong>
-  <%= @post.user %>
+<%= @post.inspect if Rails.env.development? %>
 </p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

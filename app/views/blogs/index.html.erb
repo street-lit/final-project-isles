@@ -14,9 +14,9 @@
   <tbody>
     <% @blogs.each do |blog| %>
       <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.user.full_name %></td>
-        <td><%= blog.description %></td>
+        <td><%= link_to( "#{blog.title}", blog ) %></td>
+        <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
+        <td><%= link_to( "#{blog.description}", blog ) %></td>
         <td><%= link_to 'Show', blog %></td>
       </tr>
     <% end %>

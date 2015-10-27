@@ -3,16 +3,34 @@
 <head>
   <title>Isles</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if user_logged_in? %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">Isles</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/blogs">Blog</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  <% else %>
+    <nav class="">
+      <div class="nav-wrapper">
+        <a href="/home" class="brand-logo">Isles</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/about">About</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/users/new">Sign Up</a></li>
+        </ul>
+      </div>
+    </nav>
+  <% end %>
   <main>
-    <% if user_logged_in? %>
-    <%= react_component("navbarLoggedIn") %>
-    <% else %>
-    <%= react_component("navbarLoggedOut") %>
-    <% end %>
 
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
@@ -30,6 +48,5 @@
       <%= @current_user.inspect if Rails.env.development? %>
     </footer>
   </main>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
