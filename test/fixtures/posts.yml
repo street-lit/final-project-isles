@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  message: MyText
+  body: MyText
   title: MyString
   blog_id: 
   user_id: 
 
 two:
-  message: MyText
+  body: MyText
   title: MyString
   blog_id: 
   user_id: 

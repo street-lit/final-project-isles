@@ -16,6 +16,9 @@
 
 <h4>Posts for <%= @blog.title %></h4>
 
+<%= link_to 'Edit', edit_blog_path(@blog.id) if @blog.user_id == @current_user.id %>
+<%= link_to 'Destroy', @blog, method: :delete, data: { confirm: 'Are you sure?' } if @blog.user_id == @current_user.id %>
+
 <table class="">
   <thead>
     <tr>
@@ -27,14 +30,14 @@
   </thead>
 
   <tbody>
-    <% @blog.posts.each do |blog| %>
+    <% @blog.posts.each do |post| %>
       <tr>
-        <td><%= link_to( "#{blog.post.title}", blog.post ) %></td>
-        <td><%= blog.post.body %></td>
-        <td><%= link_to( "#{blog.post.user.name}", user_path(blog.post.user)) %></td>
-        <td><%= link_to 'Show', blog.post %></td>
-        <td><%= link_to 'Edit', edit_blog.post_path(blog.post) if blog.post.user == @current_user %></td>
-        <td><%= link_to 'Destroy', blog.post, method: :delete, data: { confirm: 'Are you sure?' } if blog.post.user == @current_user %></td>
+        <td><%= link_to( "#{post.title}", post ) %></td>
+        <td><%= post.body %></td>
+        <td><%= link_to( "#{post.user.full_name}", user_path(post.user)) %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) if post.user == @current_user %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } if post.user == @current_user %></td>
       </tr>
     <% end %>
   </tbody>

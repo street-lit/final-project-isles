@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20151026214148) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.text     "message",    null: false
+    t.text     "body",       null: false
     t.string   "title",      null: false
     t.integer  "blog_id"
     t.integer  "user_id"

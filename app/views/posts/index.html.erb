@@ -1,10 +1,11 @@
+<p id="notice"><%= notice %></p>
 
 <h1>Listing Posts</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Message</th>
+      <th>Body</th>
       <th>Title</th>
       <th>Blog</th>
       <th>User</th>
@@ -15,7 +16,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.message %></td>
+        <td><%= post.body %></td>
         <td><%= post.title %></td>
         <td><%= post.blog %></td>
         <td><%= post.user %></td>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :posts
   get '/about',         to: "landing_pages#about", as: "about"
 
   get     '/login',     to: 'sessions#new',        as: 'new_login'
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :blogs
-  resources :posts
   resources :comments
 
   root "users#new"
