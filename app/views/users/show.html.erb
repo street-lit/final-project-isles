@@ -93,18 +93,16 @@
 <ul>
   <% @user.friendships.each do |friendship| %>
     <li>
-      <%= friendship.friend.full_name %>
-      (<%= link_to "Cancel", delete_friendship_path(:id => friendship) %>)
+      <%= friendship.friend.full_name %>(<%= link_to "Cancel", delete_friendship_path(:id => friendship) %>)<p>Params: <%= friendship.inspect %></p>
     </li>
   <% end %>
 </ul>
 
 <h2>Added by Users</h2>
 <ul>
-  <% @user.inverse_friends.each do |inverse_friend| %>
+  <% @user.inverse_friendships.each do |inverse_friendship| %>
     <li>
-      <%= inverse_friend.full_name %>
-      (<%= link_to "Deny", delete_friendship_path(:id => inverse_friend) %>)
+      <%= inverse_friendship.user.full_name %>(<%= link_to "Deny", delete_friendship_path(:id => inverse_friendship) %>)<p>Params:<%= inverse_friendship.inspect %></p>
     </li>
   <% end %>
 </ul>
