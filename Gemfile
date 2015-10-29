@@ -55,3 +55,4 @@ group :production do
 end
 
 gem 'materialize-sass'
+gem "paperclip", "~> 4.3"
