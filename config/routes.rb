@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :messages
+  resources :conversations
+  resources :chatrooms
   get '/about',         to: "landing_pages#about", as: "about"
 
   # get     '/login',     to: 'sessions#new',        as: 'new_login'
