@@ -30,6 +30,7 @@
       <tr>
         <td><%= link_to( "#{post.title}", post ) %></td>
         <td><%= link_to( "#{post.body}", post ) %></td>
+        <td><%= link_to( "#{post.comments.count}", post )%></td>
         <td><%= link_to( "#{post.created_at}", post ) %></td>
       </tr>
     <% end %>

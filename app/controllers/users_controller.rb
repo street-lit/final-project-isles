@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def home
+    @users = User.all
   end
 
   # GET /users/1

@@ -18,5 +18,10 @@ Rails.application.routes.draw do
     get 'logout' => :destroy
   end
 
+  controller :friendships do
+    get 'new_friendship' => :create
+    get 'delete_friendship' => :destroy
+  end
+
   root "landing_pages#about"
 end

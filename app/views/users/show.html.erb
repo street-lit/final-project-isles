@@ -19,55 +19,95 @@
   <%= @user.username %>
 </p>
 
-<p>
-  <strong>Age:</strong>
-  <%= @user.age %>
-</p>
+<% unless @user.age.blank? || @user.age.nil? %>
+  <p>
+    <strong>Age:</strong>
+    <%= @user.age %>
+  </p>
+<% end %>
 
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
+<% unless @user.city.blank? || @user.city.nil? %>
+  <p>
+    <strong>City:</strong>
+    <%= @user.city %>
+  </p>
+<% end %>
 
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
+<% unless @user.state.blank? || @user.state.nil? %>
+  <p>
+    <strong>State:</strong>
+    <%= @user.state %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Twitter:</strong>
-  <%= @user.twitter %>
-</p>
+<% unless @user.twitter.blank? || @user.twitter.nil? %>
+  <p>
+    <strong>Twitter:</strong>
+    <%= @user.twitter %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Github:</strong>
-  <%= @user.github %>
-</p>
+<% unless @user.github.blank? || @user.github.nil? %>
+  <p>
+    <strong>Github:</strong>
+    <%= @user.github %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Linkedin:</strong>
-  <%= @user.linkedin %>
-</p>
+<% unless @user.linkedin.blank? || @user.linkedin.nil? %>
+  <p>
+    <strong>Linkedin:</strong>
+    <%= @user.linkedin %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Phone number:</strong>
-  <%= @user.phone_number %>
-</p>
+<% unless @user.phone_number.blank? || @user.phone_number.nil? %>
+  <p>
+    <strong>Phone number:</strong>
+    <%= @user.phone_number %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Birthday:</strong>
-  <%= @user.birthday %>
-</p>
+<% unless @user.birthday.blank? || @user.birthday.nil? %>
+  <p>
+    <strong>Birthday:</strong>
+    <%= @user.birthday %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Soundcloud:</strong>
-  <%= @user.soundcloud %>
-</p>
+<% unless @user.soundcloud.blank? || @user.soundcloud.nil? %>
+  <p>
+    <strong>Soundcloud:</strong>
+    <%= @user.soundcloud %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Facebook:</strong>
-  <%= @user.facebook %>
-</p>
+<% unless @user.facebook.blank? || @user.facebook.nil? %>
+  <p>
+    <strong>Facebook:</strong>
+    <%= @user.facebook %>
+  </p>
+<% end %>
+
+<h2>Pending Friend Requests</h2>
+<ul>
+  <% @user.friendships.each do |friendship| %>
+    <li>
+      <%= friendship.friend.full_name %>
+      (<%= link_to "Cancel", delete_friendship_path(:id => friendship) %>)
+    </li>
+  <% end %>
+</ul>
+
+<h2>Added by Users</h2>
+<ul>
+  <% @user.inverse_friends.each do |inverse_friend| %>
+    <li>
+      <%= inverse_friend.full_name %>
+      (<%= link_to "Deny", delete_friendship_path(:id => inverse_friend) %>)
+    </li>
+  <% end %>
+</ul>
 
 <%= link_to 'Back', users_path %> |
 <%= link_to 'Edit', edit_user_path(@user) %> |
