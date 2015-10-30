@@ -89,6 +89,22 @@
   </p>
 <% end %>
 
+<h2>Pending Friend Requests</h2>
+<ul>
+  <% @user.requests.each do |request| %>
+    <li>
+      <%= request.requested_friend.full_name %>(<%= link_to "Cancel", request, method: :DELETE %>)<p>Params: <%= request.inspect %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Friended by Users</h2>
+<ul>
+  <% @user.reverse_requested_friends.each do |user| %>
+    <li><%= user.username %></li>
+  <% end %>
+</ul>
+
 <%= link_to 'Back', users_path %> |
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>

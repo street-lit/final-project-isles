@@ -24,16 +24,13 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
-    @request = Request.new(request_params)
-
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
+    @request = current_user.requests.build(:requested_friend_id => params[:requested_friend_id])
+    if @request.save
+      flash[:notice] = "Friend Request Sent."
+      redirect_to :back
+    else
+      flash[:error] = "Unable to Send Request."
+      redirect_to :back
     end
   end
 
@@ -54,11 +51,10 @@ class RequestsController < ApplicationController
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
+    @request = current_user.requests.find(params[:id])
     @request.destroy
-    respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = "Friend Request Canceled."
+    redirect_to current_user
   end
 
   private
