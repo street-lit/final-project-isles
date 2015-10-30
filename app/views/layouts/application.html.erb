@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Isles</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -16,7 +16,7 @@
           <li><a href="#">Friends</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/blogs">Blog</a></li>
-          <li><%= link_to("Logout", logout_path) %></li>
+          <li><%= link_to("Logout", logout_path, method: :DELETE) %></li>
         </ul>
       </div>
     </nav>
@@ -50,5 +50,6 @@
       <%= @current_user.inspect if Rails.env.development? %>
     </footer>
   </main>
+  <%= javascript_include_tag 'application' %>
 </body>
 </html>

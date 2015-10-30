@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>Album:</strong>
+  <%= link_to "#{@photo.album.title}", @photo.album %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= link_to "#{@photo.user.full_name}", @photo.user %>
+</p>
 
 <p>
   <strong>Description:</strong>
@@ -10,15 +18,41 @@
   <%= @photo.location %>
 </p>
 
-<p>
-  <strong>Album:</strong>
-  <%= @photo.album %>
-</p>
+<%= image_tag @photo.image.url(:medium) %>
+
+<ul>
+  <% @photo.observations.each do |observation| %>
+    <li>
+      <strong><%= observation.user.full_name %> said:</strong>
+      <%= observation.body %>
+    </li>
+  <% end %>
+</ul>
+
+<section class="observations">
+  <h3> Comments (<%= @photo.observations.count %>)</h3>
+  <hr>
+  <%= form_for(@observation) do |f| %>
+    <%= f.hidden_field :photo_id, value: @photo.id %>
+    <%= f.hidden_field :album_id, value: @photo.album_id %>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
+    <p>
+      <%= f.text_area :body %>
+      <p class="errors"></p>
+    </p>
+    <div class="actions">
+    <%= f.submit "Comment"%>
+  </div>
+  <% end %>
+  <hr>
+</section>
+
+<%= link_to "#{@photo.album.title} Photos", photos_path %> |
+<%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id) %> |
+<%= link_to 'Destroy', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }  %>
+
+
 
 <p>
-  <strong>User:</strong>
-  <%= @photo.user %>
+<%= @photo.inspect if Rails.env.development? %>
 </p>
-
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>

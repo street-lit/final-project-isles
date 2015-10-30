@@ -7,19 +7,25 @@
     <tr>
       <th>Description</th>
       <th>Location</th>
+      <th>Photo</th>
       <th>Album</th>
       <th>User</th>
-      <th colspan="3"></th>
+      <th colspan="3">Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-        <td><%= photo.description %></td>
+        <td><%= link_to "#{photo.description}", photo %></td>
         <td><%= photo.location %></td>
-        <td><%= photo.album %></td>
-        <td><%= photo.user %></td>
+        <td>
+        <%= link_to photo do %>
+          <%= image_tag photo.image.url(:thumb) unless photo.image.url(:thumb) == "/images/thumb/missing.png" %>
+        <% end %>
+        </td>
+        <td><%= link_to "#{photo.album.title}", photo.album %></td>
+        <td><%= link_to "#{photo.user.full_name}", photo.user %></td>
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
         <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>

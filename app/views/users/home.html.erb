@@ -1,13 +1,13 @@
 <h1>Home</h1>
 
+<h3>Blogs</h3>
+
 <table>
   <thead>
     <tr>
-      <th>Blogs</th>
-      <th>User</th>
+      <th>Title</th>
       <th>Description</th>
-      <th>Number of Posts</th>
-      <th colspan="3">Action</th>
+      <th>Posts</th>
     </tr>
   </thead>
 
@@ -15,10 +15,30 @@
     <% @current_user.blogs.each do |blog| %>
       <tr>
         <td><%= link_to( "#{blog.title}", blog ) %></td>
-        <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
         <td><%= link_to( "#{blog.description}", blog ) %></td>
-        <td><%= "#{blog.posts.count}" %></td>
-        <td><%= link_to 'Show', blog %></td>
+        <td><%= link_to "#{blog.posts.count}", blog %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Photo Albums</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Photos</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @current_user.albums.each do |album| %>
+      <tr>
+        <td><%= link_to "#{album.title}", album %></td>
+        <td><%= link_to "#{album.description}", album%></td>
+        <td><%= link_to "#{album.photos.count}", album %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,11 +59,10 @@
       <% if @current_user.id != user.id %>
         <tr>
           <td><%= link_to( "#{user.full_name}", user ) %></td>
-          <td><%= link_to 'Add Friend', new_friendship_path(:friend_id => user) if
+          <td><%= link_to 'Add Friend', friendships_path(:friend_id => user), :method => :post if
       @current_user.friendships.where(:friend_id => user.id).where(:user_id => @current_user.id).empty? %></td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
-

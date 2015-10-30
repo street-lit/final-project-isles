@@ -7,7 +7,6 @@
       <th>Title</th>
       <th>User</th>
       <th>Description</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -17,7 +16,6 @@
         <td><%= link_to( "#{blog.title}", blog ) %></td>
         <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
         <td><%= link_to( "#{blog.description}", blog ) %></td>
-        <td><%= link_to 'Show', blog %></td>
       </tr>
     <% end %>
   </tbody>

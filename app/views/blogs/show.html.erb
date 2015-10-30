@@ -16,7 +16,7 @@
 
 <h4>Posts for <%= @blog.title %></h4>
 
-<table class="">
+<table>
   <thead>
     <tr>
       <th>Title</th>
@@ -38,6 +38,6 @@
 </table>
 
 <%= link_to 'Back', blogs_path %> |
-<%= link_to 'New Post', new_post_path(:blog_id => @blog) %> |
+<%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog) %> |
 <%= link_to 'Edit Blog', edit_blog_path(@blog.id) if @blog.user_id == @current_user.id %> |
 <%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' } if @blog.user_id == @current_user.id %>
