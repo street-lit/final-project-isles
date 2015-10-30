@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @request.user_id %>
+</p>
+
+<p>
+  <strong>Requested friend:</strong>
+  <%= @request.requested_friend_id %>
+</p>
+
+<p>
+  <strong>Are friends:</strong>
+  <%= @request.are_friends %>
+</p>
+
+<p>
+  <strong>Did confirm:</strong>
+  <%= @request.did_confirm %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

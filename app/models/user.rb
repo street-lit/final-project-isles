@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :requests
+  has_many :requested_friends, through: :requests
+
   has_secure_password
   has_many :blogs
   has_many :posts
