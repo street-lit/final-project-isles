@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
 
-  resources :friendships
 
   root "landing_pages#about"
 end
