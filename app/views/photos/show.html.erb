@@ -47,6 +47,7 @@
   <hr>
 </section>
 
+<%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id) %> |
 <%= link_to "#{@photo.album.title} Photos", photos_path %> |
 <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id) %> |
 <%= link_to 'Destroy', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }  %>
