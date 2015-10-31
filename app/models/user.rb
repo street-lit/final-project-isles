@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :friend_requested_friends, :class_name => 'Friend', :foreign_key => 'friend_requester_id'
   has_many :friend_accepted_friends, :class_name => 'Friend', :foreign_key => 'friend_accepter_id'
 
+  def friends
+    self.friend_requested_friends + self.friend_accepted_friends
+  end
+
   has_secure_password
   has_many :blogs
   has_many :posts
