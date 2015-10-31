@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+
+  def requests_to_be_users_friend
+    self.requests.where(requested_friend_id: self.id).first
+  end
 end
