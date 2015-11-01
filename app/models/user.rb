@@ -25,4 +25,10 @@ class User < ActiveRecord::Base
   def requests_to_be_users_friend
     self.requests.where(requested_friend_id: self.id).first
   end
+
+  def is_friends(user)
+    self.friends.any? do |friend|
+      [friend.friend_requester_id, friend.friend_accepter_id].include?(user.id)
+    end
+  end
 end

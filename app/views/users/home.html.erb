@@ -56,11 +56,11 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <% if @current_user.id != user.id %>
+      <% if !@current_user.is_friends(user) && @current_user != user %>
         <tr>
-          <td><%= link_to( "#{user.full_name}", user ) %></td>
-          <td><%= link_to 'Add Friend', requests_path(:requested_friend_id => user), :method => :post if
-      @current_user.requests.where(:requested_friend_id => user.id).where(:user_id => @current_user.id).empty? %></td>
+          <td><%= link_to( "#{user.full_name}", user ) %><p><%= user.requests.inspect %></p></td>
+          <td><%= link_to( "Add Friend", requests_path(:requested_friend_id => user), :method => :post, class: "waves-effect waves-light btn light-green accent-4") if
+      @current_user.requests.where(:requested_friend_id => user.id).where(:user_id => @current_user.id).empty? && !user.requests.where(requested_friend_id: @current_user.id).exists? %></td>
         </tr>
       <% end %>
     <% end %>

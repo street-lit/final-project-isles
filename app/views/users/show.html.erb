@@ -89,27 +89,36 @@
   </p>
 <% end %>
 
-<h2>Pending Friend Requests</h2>
-<ul>
-  <% @user.requests.each do |request| %>
-    <li>
-      <%= request.requested_friend.full_name %><%= link_to "Cancel", request, method: :DELETE, class: "waves-effect waves-light btn light-green accent-4" %><p>Params: <%= request.inspect %></p>
-    </li>
-  <% end %>
-</ul>
-
-<h2>Friend Requests</h2>
-<ul>
-  <% @user.reverse_requested_friends.each do |user| %>
-    <% if user.requests.where(requested_friend_id: @user.id).first.did_confirm == false %>
-      <li><%= user.full_name %>
-      <%= link_to "Accept", accept_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to "Deny", deny_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
-      <p><strong>Request: </strong><%= user.requests.where(requested_friend_id: @user.id).first.inspect %></p>
-      </li>
+<% if @current_user.requests.where(user_id: @current_user.id, did_confirm: false).exists? %>
+  <h2>Pending Friend Requests</h2>
+  <ul>
+    <% @user.requests.each do |request| %>
+      <% unless request.did_confirm == true %>
+        <li>
+          <%= request.requested_friend.full_name %><%= link_to "Cancel", request, method: :DELETE, class: "waves-effect waves-light btn light-green accent-4" %><p>Params: <%= request.inspect %></p>
+        </li>
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+<% end %>
+
+<% if @user.reverse_requests.where(requested_friend_id: @current_user.id, did_confirm: false).exists? %>
+<p><strong>reverse_requests: </strong><%= @user.reverse_requests.inspect %></p>
+  <h2>Friend Requests</h2>
+  <ul>
+    <% @user.reverse_requested_friends.each do |user| %>
+      <% if !@current_user.is_friends(user) %>
+        <% if user.requests.where(requested_friend_id: @user.id).first.did_confirm == false %>
+          <li><%= user.full_name %>
+          <%= link_to "Accept", accept_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
+          <%= link_to "Deny", deny_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
+          <p><strong>Request: </strong><%= user.requests.where(requested_friend_id: @user.id).first.inspect %></p>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
 
 <!-- reverse_request.user.requests.where(requested_friend_id: @user.id).first -->
 
