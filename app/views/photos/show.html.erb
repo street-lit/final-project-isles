@@ -9,16 +9,16 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @photo.description %>
-</p>
-
-<p>
   <strong>Location:</strong>
   <%= @photo.location %>
 </p>
 
 <%= image_tag @photo.image.url(:medium) %>
+
+<p>
+  <strong>Description:</strong>
+  <%= @photo.description %>
+</p>
 
 <ul>
   <% @photo.observations.each do |observation| %>
@@ -41,16 +41,16 @@
       <p class="errors"></p>
     </p>
     <div class="actions">
-    <%= f.submit "Comment"%>
+    <%= f.submit "Comment" %>
   </div>
   <% end %>
   <hr>
 </section>
 
-<%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id) %> |
-<%= link_to "#{@photo.album.title} Photos", photos_path %> |
-<%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id) %> |
-<%= link_to 'Destroy', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }  %>
+<%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to "Back", :back, class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4"  %>
 
 
 

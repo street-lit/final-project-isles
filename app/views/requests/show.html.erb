@@ -20,5 +20,5 @@
   <%= @request.did_confirm %>
 </p>
 
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Edit', edit_request_path(@request), class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>

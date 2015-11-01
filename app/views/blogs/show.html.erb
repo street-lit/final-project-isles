@@ -37,7 +37,7 @@
   </tbody>
 </table>
 
-<%= link_to 'Back', blogs_path %> |
-<%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog) %> |
-<%= link_to 'Edit Blog', edit_blog_path(@blog.id) if @blog.user_id == @current_user.id %> |
-<%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' } if @blog.user_id == @current_user.id %>
+<%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to 'Edit Blog', edit_blog_path(@blog.id), class: "waves-effect waves-light btn light-green accent-4" if @blog.user_id == @current_user.id %>
+<%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @blog.user_id == @current_user.id %>
