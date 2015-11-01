@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Friends</h1>
 
-<h1>Listing Friends</h1>
-
+<% unless @current_user.friends.empty? %>
 <table>
   <thead>
     <tr>
@@ -12,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @friends.each do |friend| %>
+    <% @current_user.friends.each do |friend| %>
       <tr>
         <td><%= friend.friend_requester.full_name %></td>
         <td><%= friend.friend_accepter.full_name %></td>
@@ -23,7 +22,6 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
+<% end %>
 
 <%= link_to 'New Friend', new_friend_path, class: "waves-effect waves-light btn light-green accent-4" %>

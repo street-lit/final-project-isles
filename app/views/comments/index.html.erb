@@ -1,6 +1,6 @@
+<h1>Comments</h1>
 
-<h1>Listing Comments</h1>
-
+<% unless @current_user.comments.empty? %>
 <table>
   <thead>
     <tr>
@@ -26,7 +26,6 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
+<% end %>
 
 <%= link_to 'New Comment', new_comment_path, class: "waves-effect waves-light btn light-green accent-4" %>
