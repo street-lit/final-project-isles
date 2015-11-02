@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
     @friend.friend_accepter_id = params[:requested_friend_id]
     @friend.save
     flash[:notice] = "You are now friends with #{@requests.user.full_name}"
-    redirect_to :back
+    redirect_to home_path
   end
 
   def deny
@@ -31,7 +31,7 @@ class RequestsController < ApplicationController
     @requests.did_confirm = true
     @requests.save
     flash[:notice] = "You have denied the friend request sent by #{@requests.user.full_name}"
-    redirect_to :back
+    redirect_to home_path
   end
 
   # GET /requests/new

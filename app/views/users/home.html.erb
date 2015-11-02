@@ -1,14 +1,48 @@
+<div class="intro z-depth-1 parallax-container">
+  <div class="parallax"><%= image_tag "landing_page.jpeg" %></div>
+  <h1 class="grey-text text-lighten-5"><%= @current_user.full_name%></h1>
+  <h5 clas="grey lighten-4 grey-text text-darken-1">We're happy to have you here!</h5>
+</div>
+
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <h1>Home</h1>
+      <% if @current_user.has_friend_requests %>
+        <p><strong>reverse_requests: </strong><%= @current_user.reverse_requests.inspect %></p>
+        <h2>Friend Requests</h2>
+        <ul>
+          <% @current_user.reverse_requested_friends.each do |user| %>
+            <% if !@current_user.is_friends(user) %>
+              <% if user.requests.where(requested_friend_id: @current_user.id).first.did_confirm == false %>
+                <li><%= user.full_name %>
+                <%= link_to "Accept", accept_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
+                <%= link_to "Deny", deny_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
+                <p><strong>Request: </strong><%= user.requests.where(requested_friend_id: @current_user.id).first.inspect %></p>
+                </li>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if @current_user.albums.empty? %>
+        <h3 class="center-text">You don't have any photo albums yet, would you like to upload some photos to share with your friends?</h3>
+        <p class="center-text"><%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+      <% end %>
+
+      <% if @current_user.blogs.empty? %>
+        <div>
+          <h3 class="center-text">You haven't written anything yet, would you like to start a blog?</h3>
+          <p class="center-text"><%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+        </div>
+      <% end %>
 
       <div>
         <div class="row">
           <div class="col s12 m4 l4">
             <div class="card ">
-              <h5 class="center-text">Blogs</h5>
               <% unless @current_user.blogs.empty? %>
+                <h5 class="center-text">Blogs</h5>
                 <table>
                   <tbody>
                     <% @current_user.blogs.each do |blog| %>
@@ -21,19 +55,10 @@
                   </tbody>
                 </table>
               <% end %>
-              <% if @current_user.blogs.empty? %>
-                <h3>Would you like to start a blog?</h3>
-                <%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %>
-              <% end %>
             </div>
           </div>
           <div class="col s12 m4 l4">
             <div class="card">
-              <% if @current_user.albums.empty? %>
-                <h3>Perhaps upload some photos to share with your friends?</h3>
-                <%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %>
-              <% end %>
-
               <% unless @current_user.albums.empty? %>
               <h5 class="center-text">Photo Albums</h5>
               <table>
@@ -95,6 +120,19 @@
           <% end %>
         </tbody>
       </table>
+
+      <% if @current_user.has_pending_friend_requests %>
+        <h2>Pending Friend Requests</h2>
+        <ul>
+          <% @current_user.requests.each do |request| %>
+            <% unless request.did_confirm == true %>
+              <li>
+                <%= request.requested_friend.full_name %><%= link_to "Cancel", request, method: :DELETE, class: "waves-effect waves-light btn light-green accent-4" %><p>Params: <%= request.inspect %></p>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>
