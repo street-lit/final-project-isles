@@ -25,16 +25,16 @@
         </ul>
       <% end %>
 
-      <% if @current_user.albums.empty? %>
-        <h3 class="center-text">You don't have any photo albums yet, would you like to upload some photos to share with your friends?</h3>
-        <p class="center-text"><%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
-      <% end %>
-
       <% if @current_user.blogs.empty? %>
         <div>
           <h3 class="center-text">You haven't written anything yet, would you like to start a blog?</h3>
           <p class="center-text"><%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
         </div>
+      <% end %>
+
+      <% if @current_user.albums.empty? %>
+        <h3 class="center-text">You don't have any photo albums yet, would you like to upload some photos to share with your friends?</h3>
+        <p class="center-text"><%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
       <% end %>
 
       <div>

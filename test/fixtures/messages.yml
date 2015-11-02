@@ -4,8 +4,10 @@ one:
   body: MyText
   friend_id: 
   conversation_id: 
+  user_id: 
 
 two:
   body: MyText
   friend_id: 
   conversation_id: 
+  user_id: 

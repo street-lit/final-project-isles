@@ -21,6 +21,9 @@ class RequestsController < ApplicationController
     @friend.friend_requester_id = params[:user_id]
     @friend.friend_accepter_id = params[:requested_friend_id]
     @friend.save
+    @conversation = Conversation.new
+    @conversation.friend = @friend
+    @conversation.save
     flash[:notice] = "You are now friends with #{@requests.user.full_name}"
     redirect_to home_path
   end

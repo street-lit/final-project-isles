@@ -6,9 +6,7 @@
       <table>
         <thead>
           <tr>
-            <th>Friend id one</th>
-            <th>Friend id two</th>
-            <th>Title</th>
+            <th>Friend</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -16,8 +14,6 @@
         <tbody>
           <% @conversations.each do |conversation| %>
             <tr>
-              <td><%= conversation.friend_id_one %></td>
-              <td><%= conversation.friend_id_two %></td>
               <td><%= conversation.title %></td>
               <td><%= link_to 'Show', conversation %></td>
               <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>

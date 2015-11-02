@@ -1,5 +1,8 @@
 class Conversation < ActiveRecord::Base
+  belongs_to :friend
   has_many :messages
-  belongs_to :friend_one, :class_name => 'Friend', :foreign_key => 'friend_id_one'
-  belongs_to :friend_two, :class_name => 'Friend', :foreign_key => 'friend_id_two'
+
+  def title
+    "#{self.friend.friend_requester.full_name} and #{self.friend.friend_accepter.full_name}'s Conversation"
+  end
 end

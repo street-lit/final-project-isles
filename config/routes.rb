@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :messages
   resources :conversations
+  resources :messages
   resources :conversations
   get     '/login',     to: 'sessions#new',        as: 'new_login'
   post    '/login',     to: 'sessions#create',     as: 'login'

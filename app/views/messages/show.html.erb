@@ -16,8 +16,13 @@
         <%= @message.conversation %>
       </p>
 
-      <%= link_to 'Edit', edit_message_path(@message), class: "waves-effect waves-light btn light-green accent-4"  %>
-      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4"  %>
+      <p>
+        <strong>User:</strong>
+        <%= @message.user %>
+      </p>
+
+      <%= link_to 'Edit', edit_message_path(@message), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
     </div>
   </div>
 </div>

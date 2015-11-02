@@ -1,20 +1,22 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <p>
-        <strong>Friend id one:</strong>
-        <%= @conversation.friend_id_one %>
-      </p>
+      <h1><%= @conversation.title %></h1>
 
-      <p>
-        <strong>Friend id two:</strong>
-        <%= @conversation.friend_id_two %>
-      </p>
+      <div class="#ffffff white scroll">
+        <table>
 
-      <p>
-        <strong>Title:</strong>
-        <%= @conversation.title %>
-      </p>
+          <tbody>
+            <% @conversation.messages.each do |message| %>
+              <tr>
+                <td><%= message.user.name %> said: </td>
+                <td><%= message.body %></td>
+                <td><%= message.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
       <%= link_to 'Edit', edit_conversation_path(@conversation) %>
       <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4"  %>

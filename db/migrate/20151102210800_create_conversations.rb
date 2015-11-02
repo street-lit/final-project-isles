@@ -1,9 +1,7 @@
 class CreateConversations < ActiveRecord::Migration
   def change
     create_table :conversations do |t|
-      t.integer :friend_id_one
-      t.integer :friend_id_two
-      t.string :title
+      t.belongs_to :friend, index: true, foreign_key: true
 
       t.timestamps null: false
     end
