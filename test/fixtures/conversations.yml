@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  friend_id_one: 
-  friend_id_two: 
+  friend_id_one: 1
+  friend_id_two: 1
   title: MyString
 
 two:
-  friend_id_one: 
-  friend_id_two: 
+  friend_id_one: 1
+  friend_id_two: 1
   title: MyString

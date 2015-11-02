@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Body:</strong>
+        <%= @message.body %>
+      </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @message.body %>
-</p>
+      <p>
+        <strong>Friend:</strong>
+        <%= @message.friend %>
+      </p>
 
-<p>
-  <strong>Friend:</strong>
-  <%= @message.friend %>
-</p>
+      <p>
+        <strong>Conversation:</strong>
+        <%= @message.conversation %>
+      </p>
 
-<p>
-  <strong>Conversation:</strong>
-  <%= @message.conversation %>
-</p>
-
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+      <%= link_to 'Edit', edit_message_path(@message), class: "waves-effect waves-light btn light-green accent-4"  %>
+      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4"  %>
+    </div>
+  </div>
+</div>

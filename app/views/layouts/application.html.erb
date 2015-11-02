@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'application' %>
 </head>
 <body>
   <% if user_logged_in? %>
@@ -15,7 +16,8 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="/home">Home</a></li>
           <li><a href="/friends">Friends</a></li>
-          <li><a href="/blogs">Blog</a></li>
+          <li><a href="#">Conversations</a></li>
+          <li><a href="/blogs">Blogs</a></li>
           <li><a href="/albums">Albums</a></li>
           <li><%= link_to("Profile Settings", user_path(@current_user) ) %></li>
           <li><%= link_to("Logout", logout_path, method: :DELETE) %></li>
@@ -23,7 +25,8 @@
         <ul class="side-nav" id="mobile-demo">
           <li><a href="/home">Home</a></li>
           <li><a href="/friends">Friends</a></li>
-          <li><a href="/blogs">Blog</a></li>
+          <li><a href="#">Conversations</a></li>
+          <li><a href="/blogs">Blogs</a></li>
           <li><a href="/albums">Albums</a></li>
           <li><%= link_to("Profile Settings", user_path(@current_user) ) %></li>
           <li><%= link_to("Logout", logout_path, method: :DELETE) %></li>
@@ -49,17 +52,18 @@
     </nav>
   <% end %>
   <main>
-
-    <p id="notice"><%= notice %></p>
-    <p id="alert"><%= alert %></p>
-
-      <%= yield %>
-
+    <% if notice || alert %>
+      <script>
+        $(document).ready(function () {
+          Materialize.toast("<%= notice || alert %>", 4000);
+        });
+      </script>
+    <% end %>
+    <%= yield %>
     <footer>
       <%= params.inspect if Rails.env.development? %>
       <%= @current_user.inspect if Rails.env.development? %>
     </footer>
   </main>
-  <%= javascript_include_tag 'application' %>
 </body>
 </html>
