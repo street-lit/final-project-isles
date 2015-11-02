@@ -5,3 +5,12 @@ $primary-color: color("cyan", "lighten-1") !default;
 body{
   background-color: #fff8e1;
 }
+
+html {
+    background-image: url(image-path("landing_page.jpeg"));
+    background-color: #cccccc;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

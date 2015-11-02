@@ -4,24 +4,20 @@
 <table>
   <thead>
     <tr>
-      <th>Friend requester</th>
-      <th>Friend accepter</th>
-      <th colspan="3"></th>
+      <th>Friend</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
     <% @current_user.friends.each do |friend| %>
       <tr>
-        <td><%= friend.friend_requester.full_name %></td>
-        <td><%= friend.friend_accepter.full_name %></td>
-        <td><%= link_to 'Show', friend %></td>
-        <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
-        <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "#{friend.friend_requester.full_name}", user_path(friend.friend_requester.id) if friend.friend_requester != @current_user %>
+  <%= link_to "#{friend.friend_accepter.full_name}", user_path(friend.friend_accepter.id) if friend.friend_accepter != @current_user %></td>
+        <td><%= link_to 'Edit', edit_friend_path(friend), class: "waves-effect waves-light btn light-green accent-4" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <% end %>
-
-<%= link_to 'New Friend', new_friend_path, class: "waves-effect waves-light btn light-green accent-4" %>

@@ -1,5 +1,6 @@
 <h1>Home</h1>
 
+<% unless @current_user.blogs.empty? %>
 <h3>Blogs</h3>
 
 <table>
@@ -21,7 +22,9 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
+<% unless @current_user.albums.empty? %>
 <h3>Photo Albums</h3>
 
 <table>
@@ -43,6 +46,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 
 <h3>Users</h3>
 

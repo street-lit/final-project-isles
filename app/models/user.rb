@@ -1,29 +1,44 @@
 class User < ActiveRecord::Base
-  has_many :requests
-  has_many :requested_friends, through: :requests
-  has_many :reverse_requests, class_name: "Request", foreign_key: "requested_friend_id"
-  has_many :reverse_requested_friends, through: :reverse_requests, source: :user
-  has_many :friend_requested_friends, :class_name => 'Friend', :foreign_key => 'friend_requester_id'
-  has_many :friend_accepted_friends, :class_name => 'Friend', :foreign_key => 'friend_accepter_id'
-
-  def friends
-    self.friend_requested_friends + self.friend_accepted_friends
-  end
-
   has_secure_password
-  has_many :blogs
-  has_many :posts
-  has_many :comments
-  has_many :albums
-  has_many :photos
-  has_many :observations
+  validates_presence_of :first_name, :last_name, :username
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+
+  has_many :requests, dependent: :destroy
+  has_many :requested_friends, through: :requests, dependent: :destroy
+  has_many :reverse_requests, class_name: "Request", foreign_key: "requested_friend_id", dependent: :destroy
+  has_many :reverse_requested_friends, through: :reverse_requests, source: :user, dependent: :destroy
+  has_many :friend_requested_friends, :class_name => 'Friend', :foreign_key => 'friend_requester_id', dependent: :destroy
+  has_many :friend_accepted_friends, :class_name => 'Friend', :foreign_key => 'friend_accepter_id', dependent: :destroy
+  has_many :blogs, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :albums, dependent: :destroy
+  has_many :photos, dependent: :destroy
+  has_many :observations, dependent: :destroy
 
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
 
-  def requests_to_be_users_friend
-    self.requests.where(requested_friend_id: self.id).first
+  #Request Methods
+
+  def has_pending_friend_requests
+    self.requests.any? do |request|
+      [request.user_id].include?(self.id) && request.did_confirm == false
+    end
+  end
+
+  def has_friend_requests
+    self.reverse_requests.any? do |reverse_request|
+      [reverse_request.requested_friend_id].include?(self.id) && reverse_request.did_confirm == false
+    end
+  end
+
+  def friends
+    self.friend_requested_friends + self.friend_accepted_friends
   end
 
   def is_friends(user)

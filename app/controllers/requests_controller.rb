@@ -12,25 +12,25 @@ class RequestsController < ApplicationController
   def show
   end
 
-  def deny
-    @requests = Request.find_by(user_id: params[:user_id])
-    @requests.are_friends = false
-    @requests.did_confirm = true
-    @requests.save
-    flash[:notice] = "You have denied the friend request sent by #{@requests.user.full_name}"
-    redirect_to :back
-  end
-
   def accept
-    @requests = Request.find_by(user_id: params[:user_id])
+    @requests = Request.find_by_user_id_and_requested_friend_id(params[:user_id], params[:requested_friend_id])
     @requests.are_friends = true
     @requests.did_confirm = true
+    @requests.save
     @friend = Friend.new
     @friend.friend_requester_id = params[:user_id]
     @friend.friend_accepter_id = params[:requested_friend_id]
     @friend.save
-    @requests.save
     flash[:notice] = "You are now friends with #{@requests.user.full_name}"
+    redirect_to :back
+  end
+
+  def deny
+    @requests = Request.find_by_user_id_and_requested_friend_id(params[:user_id], params[:requested_friend_id])
+    @requests.are_friends = false
+    @requests.did_confirm = true
+    @requests.save
+    flash[:notice] = "You have denied the friend request sent by #{@requests.user.full_name}"
     redirect_to :back
   end
 

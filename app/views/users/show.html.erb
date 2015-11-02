@@ -89,7 +89,7 @@
   </p>
 <% end %>
 
-<% if @current_user.requests.where(user_id: @current_user.id, did_confirm: false).exists? %>
+<% if @current_user == @user && @current_user.has_pending_friend_requests %>
   <h2>Pending Friend Requests</h2>
   <ul>
     <% @user.requests.each do |request| %>
@@ -102,8 +102,8 @@
   </ul>
 <% end %>
 
-<% if @user.reverse_requests.where(requested_friend_id: @current_user.id, did_confirm: false).exists? %>
-<p><strong>reverse_requests: </strong><%= @user.reverse_requests.inspect %></p>
+<% if @current_user == @user && @current_user.has_friend_requests %>
+  <p><strong>reverse_requests: </strong><%= @user.reverse_requests.inspect %></p>
   <h2>Friend Requests</h2>
   <ul>
     <% @user.reverse_requested_friends.each do |user| %>
@@ -123,5 +123,5 @@
 <!-- reverse_request.user.requests.where(requested_friend_id: @user.id).first -->
 
 <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Edit', edit_user_path(@user), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" %>
+<%= link_to 'Edit', edit_user_path(@user), class: "waves-effect waves-light btn light-green accent-4" if @current_user == @user %>
+<%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @current_user == @user %>

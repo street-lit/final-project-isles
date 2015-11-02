@@ -12,7 +12,7 @@
     </thead>
 
     <tbody>
-      <% @blogs.each do |blog| %>
+      <% @current_user.blogs.each do |blog| %>
         <tr>
           <td><%= link_to( "#{blog.title}", blog ) %></td>
           <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
