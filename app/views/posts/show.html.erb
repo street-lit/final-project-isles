@@ -1,55 +1,61 @@
-<p>
-  <strong>Blog:</strong>
-  <%= @post.blog.title %>
-</p>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Blog:</strong>
+        <%= @post.blog.title %>
+      </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+      <p>
+        <strong>Title:</strong>
+        <%= @post.title %>
+      </p>
 
-<p>
-  <strong>
-  <%= @post.user.full_name %>
-  </strong>
-</p>
+      <p>
+        <strong>
+        <%= @post.user.full_name %>
+        </strong>
+      </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+      <p>
+        <strong>Body:</strong>
+        <%= @post.body %>
+      </p>
 
-<ul>
-  <% @post.comments.each do |comment| %>
-    <li>
-      <strong><%= comment.user.full_name %> said:</strong>
-      <%= comment.body %>
-    </li>
-  <% end %>
-</ul>
+      <ul>
+        <% @post.comments.each do |comment| %>
+          <li>
+            <strong><%= comment.user.full_name %> said:</strong>
+            <%= comment.body %>
+          </li>
+        <% end %>
+      </ul>
 
-<section class="comments">
-  <h3> Comments (<%= @post.comments.count %>)</h3>
-  <hr>
-  <%= form_for(@comment) do |f| %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.hidden_field :blog_id, value: @post.blog_id %>
-    <%= f.hidden_field :user_id, value: @current_user.id %>
-    <p>
-      <%= f.text_area :body %>
-      <p class="errors"></p>
-    </p>
-    <div class="actions">
-    <%= f.submit "Comment" %>
+      <section class="comments">
+        <h3> Comments (<%= @post.comments.count %>)</h3>
+        <hr>
+        <%= form_for(@comment) do |f| %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <%= f.hidden_field :blog_id, value: @post.blog_id %>
+          <%= f.hidden_field :user_id, value: @current_user.id %>
+          <p>
+            <%= f.text_area :body %>
+            <p class="errors"></p>
+          </p>
+          <div class="actions">
+          <%= f.submit "Comment" %>
+        </div>
+        <% end %>
+        <hr>
+      </section>
+
+      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Edit', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" %>
+
+      <p>
+      <%= @post.inspect if Rails.env.development? %>
+      </p>
+    </div>
   </div>
-  <% end %>
-  <hr>
-</section>
-
-<%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Edit', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" %>
-
-<p>
-<%= @post.inspect if Rails.env.development? %>
-</p>
+</div>

@@ -1,59 +1,65 @@
-<p>
-  <strong>Album:</strong>
-  <%= link_to "#{@photo.album.title}", @photo.album %>
-</p>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Album:</strong>
+        <%= link_to "#{@photo.album.title}", @photo.album %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= link_to "#{@photo.user.full_name}", @photo.user %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= link_to "#{@photo.user.full_name}", @photo.user %>
+      </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @photo.location %>
-</p>
+      <p>
+        <strong>Location:</strong>
+        <%= @photo.location %>
+      </p>
 
-<%= image_tag @photo.image.url(:medium) %>
+      <%= image_tag @photo.image.url(:medium) %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @photo.description %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @photo.description %>
+      </p>
 
-<ul>
-  <% @photo.observations.each do |observation| %>
-    <li>
-      <strong><%= observation.user.full_name %> said:</strong>
-      <%= observation.body %>
-    </li>
-  <% end %>
-</ul>
+      <ul>
+        <% @photo.observations.each do |observation| %>
+          <li>
+            <strong><%= observation.user.full_name %> said:</strong>
+            <%= observation.body %>
+          </li>
+        <% end %>
+      </ul>
 
-<section class="observations">
-  <h3> Comments (<%= @photo.observations.count %>)</h3>
-  <hr>
-  <%= form_for(@observation) do |f| %>
-    <%= f.hidden_field :photo_id, value: @photo.id %>
-    <%= f.hidden_field :album_id, value: @photo.album_id %>
-    <%= f.hidden_field :user_id, value: @current_user.id %>
-    <p>
-      <%= f.text_area :body %>
-      <p class="errors"></p>
-    </p>
-    <div class="actions">
-    <%= f.submit "Comment" %>
+      <section class="observations">
+        <h3> Comments (<%= @photo.observations.count %>)</h3>
+        <hr>
+        <%= form_for(@observation) do |f| %>
+          <%= f.hidden_field :photo_id, value: @photo.id %>
+          <%= f.hidden_field :album_id, value: @photo.album_id %>
+          <%= f.hidden_field :user_id, value: @current_user.id %>
+          <p>
+            <%= f.text_area :body %>
+            <p class="errors"></p>
+          </p>
+          <div class="actions">
+          <%= f.submit "Comment" %>
+        </div>
+        <% end %>
+        <hr>
+      </section>
+
+      <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to "Back", :back, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4"  %>
+
+
+
+      <p>
+      <%= @photo.inspect if Rails.env.development? %>
+      </p>
+    </div>
   </div>
-  <% end %>
-  <hr>
-</section>
-
-<%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to "Back", :back, class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4"  %>
-
-
-
-<p>
-<%= @photo.inspect if Rails.env.development? %>
-</p>
+</div>

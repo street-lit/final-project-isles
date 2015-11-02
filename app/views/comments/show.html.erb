@@ -1,23 +1,28 @@
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Body:</strong>
+        <%= @comment.body %>
+      </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @comment.body %>
-</p>
+      <p>
+        <strong>Post:</strong>
+        <%= @comment.post %>
+      </p>
 
-<p>
-  <strong>Post:</strong>
-  <%= @comment.post %>
-</p>
+      <p>
+        <strong>Blog:</strong>
+        <%= @comment.blog %>
+      </p>
 
-<p>
-  <strong>Blog:</strong>
-  <%= @comment.blog %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= @comment.user %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @comment.user %>
-</p>
-
-<%= link_to 'Edit', edit_comment_path(@comment), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Edit', edit_comment_path(@comment), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+    </div>
+  </div>
+</div>

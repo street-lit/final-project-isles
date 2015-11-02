@@ -1,22 +1,28 @@
-<p>
-  <strong>Body:</strong>
-  <%= @observation.body %>
-</p>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Body:</strong>
+        <%= @observation.body %>
+      </p>
 
-<p>
-  <strong>Photo:</strong>
-  <%= @observation.photo %>
-</p>
+      <p>
+        <strong>Photo:</strong>
+        <%= @observation.photo %>
+      </p>
 
-<p>
-  <strong>Album:</strong>
-  <%= @observation.album %>
-</p>
+      <p>
+        <strong>Album:</strong>
+        <%= @observation.album %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @observation.user %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= @observation.user %>
+      </p>
 
-<%= link_to 'Edit', edit_observation_path(@observation), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Edit', edit_observation_path(@observation), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+    </div>
+  </div>
+</div>

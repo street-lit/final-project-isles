@@ -1,8 +1,14 @@
-<p>
-  <strong>Friend:</strong>
-  <%= link_to "#{@friend.friend_requester.full_name}", user_path(@friend.friend_requester.id) if @friend.friend_requester != @current_user %>
-  <%= link_to "#{@friend.friend_accepter.full_name}", user_path(@friend.friend_accepter.id) if @friend.friend_accepter != @current_user %>
-</p>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Friend:</strong>
+        <%= link_to "#{@friend.friend_requester.full_name}", user_path(@friend.friend_requester.id) if @friend.friend_requester != @current_user %>
+        <%= link_to "#{@friend.friend_accepter.full_name}", user_path(@friend.friend_accepter.id) if @friend.friend_accepter != @current_user %>
+      </p>
 
-<%= link_to 'Edit', edit_friend_path(@friend), class: "waves-effect waves-light btn light-green accent-4" %>
-<%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Edit', edit_friend_path(@friend), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+    </div>
+  </div>
+</div>

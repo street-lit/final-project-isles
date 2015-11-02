@@ -3,6 +3,7 @@
 <head>
   <title>Isles</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -10,7 +11,16 @@
     <nav>
       <div class="nav-wrapper">
         <a href="/home" class="brand-logo">Isles</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">reorder</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/home">Home</a></li>
+          <li><%= link_to("Profile", user_path(@current_user) ) %></li>
+          <li><a href="/friends">Friends</a></li>
+          <li><a href="/blogs">Blog</a></li>
+          <li><a href="/albums">Albums</a></li>
+          <li><%= link_to("Logout", logout_path, method: :DELETE) %></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
           <li><a href="/home">Home</a></li>
           <li><%= link_to("Profile", user_path(@current_user) ) %></li>
           <li><a href="/friends">Friends</a></li>
@@ -24,7 +34,13 @@
     <nav class="">
       <div class="nav-wrapper">
         <a href="/about" class="brand-logo">Isles</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">reorder</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/about">About</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/users/new">Sign Up</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
           <li><a href="/about">About</a></li>
           <li><a href="/login">Login</a></li>
           <li><a href="/users/new">Sign Up</a></li>
@@ -37,7 +53,7 @@
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %></p>
 
-    <%= yield %>
+      <%= yield %>
 
     <footer>
       <%= params.inspect if Rails.env.development? %>

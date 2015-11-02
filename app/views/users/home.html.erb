@@ -1,72 +1,100 @@
-<h1>Home</h1>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <h1>Home</h1>
 
-<% unless @current_user.blogs.empty? %>
-<h3>Blogs</h3>
+      <div>
+        <div class="row">
+          <div class="col s12 m4 l4">
+            <div class="card ">
+              <h5 class="center-text">Blogs</h5>
+              <% unless @current_user.blogs.empty? %>
+                <table>
+                  <tbody>
+                    <% @current_user.blogs.each do |blog| %>
+                      <tr>
+                        <td><%= link_to( "#{blog.title}", blog ) %></td>
+                        <td><%= link_to( "#{blog.description}", blog ) %></td>
+                        <td><%= link_to "#{blog.posts.count}", blog %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              <% end %>
+              <% if @current_user.blogs.empty? %>
+                <h3>Would you like to start a blog?</h3>
+                <%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col s12 m4 l4">
+            <div class="card">
+              <% if @current_user.albums.empty? %>
+                <h3>Perhaps upload some photos to share with your friends?</h3>
+                <%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %>
+              <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Posts</th>
-    </tr>
-  </thead>
+              <% unless @current_user.albums.empty? %>
+              <h5 class="center-text">Photo Albums</h5>
+              <table>
+                <tbody>
+                  <% @current_user.albums.each do |album| %>
+                    <tr>
+                      <td><%= link_to "#{album.title}", album %></td>
+                      <td><%= link_to "#{album.description}", album%></td>
+                      <td><%= link_to "#{album.photos.count}", album %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <% end %>
+            </div>
+          </div>
+          <div class="col s12 m4 l4">
+            <ul class="collapsible">
+              <li class="active">
+                <div class="collapsible-header"><i class="mdi-av-web"></i>Designer</div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="mdi-editor-format-align-justify"></i>Developer</div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="mdi-av-play-shopping-bag"></i>Video Editor</div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="mdi-editor-insert-comment"></i>Support Asst.</div>
+                <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-  <tbody>
-    <% @current_user.blogs.each do |blog| %>
-      <tr>
-        <td><%= link_to( "#{blog.title}", blog ) %></td>
-        <td><%= link_to( "#{blog.description}", blog ) %></td>
-        <td><%= link_to "#{blog.posts.count}", blog %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
+      <h3>Users</h3>
 
-<% unless @current_user.albums.empty? %>
-<h3>Photo Albums</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th colspan="3">Action</th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Photos</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @current_user.albums.each do |album| %>
-      <tr>
-        <td><%= link_to "#{album.title}", album %></td>
-        <td><%= link_to "#{album.description}", album%></td>
-        <td><%= link_to "#{album.photos.count}", album %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
-
-<h3>Users</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3">Action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <% if !@current_user.is_friends(user) && @current_user != user %>
-        <tr>
-          <td><%= link_to( "#{user.full_name}", user ) %><p><%= user.requests.inspect %></p></td>
-          <td><%= link_to( "Add Friend", requests_path(:requested_friend_id => user), :method => :post, class: "waves-effect waves-light btn light-green accent-4") if
-      @current_user.requests.where(:requested_friend_id => user.id).where(:user_id => @current_user.id).empty? && !user.requests.where(requested_friend_id: @current_user.id).exists? %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @users.each do |user| %>
+            <% if !@current_user.is_friends(user) && @current_user != user %>
+              <tr>
+                <td><%= link_to( "#{user.full_name}", user ) %><p><%= user.requests.inspect %></p></td>
+                <td><%= link_to( "Add Friend", requests_path(:requested_friend_id => user), :method => :post, class: "waves-effect waves-light btn light-green accent-4") if
+            @current_user.requests.where(:requested_friend_id => user.id).where(:user_id => @current_user.id).empty? && !user.requests.where(requested_friend_id: @current_user.id).exists? %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
