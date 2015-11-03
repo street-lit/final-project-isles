@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   skip_before_filter :authenticate_user, only: [:new, :create]
-  before_action :current_user
+  before_action :current_user, :new_message
+
+  def new_message
+    @new_message = Message.new
+  end
 
   def authenticate_user
     unless user_logged_in?
