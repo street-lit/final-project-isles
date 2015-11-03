@@ -1,29 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class='container'>
+  <div class='row'>
+    <div class='m12'>
+      <p>
+        <strong>Occasion:</strong>
+        <%= @event.occasion %>
+      </p>
 
-<p>
-  <strong>Occasion:</strong>
-  <%= @event.occasion %>
-</p>
+      <p>
+        <strong>Description:</strong>
+        <%= @event.description %>
+      </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+      <p>
+        <strong>Dateof:</strong>
+        <%= @event.dateof %>
+      </p>
 
-<p>
-  <strong>Dateof:</strong>
-  <%= @event.dateof %>
-</p>
+      <p>
+        <strong>Milestone:</strong>
+        <%= @event.milestone %>
+      </p>
 
-<p>
-  <strong>Milestone:</strong>
-  <%= @event.milestone %>
-</p>
+      <p>
+        <strong>Friend:</strong>
+        <%= @event.friend %>
+      </p>
 
-<p>
-  <strong>Friend:</strong>
-  <%= @event.friend %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+      <%= link_to 'Edit', edit_event_path(@event), class: "waves-effect waves-light btn light-green accent-4"  %>
+      <%= link_to 'Back', events_path, class: "waves-effect waves-light btn light-green accent-4"  %>
+    </div>
+  </div>
+</div>

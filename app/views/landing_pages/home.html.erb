@@ -1,7 +1,0 @@
-<h1>Welcome to Isle</h1>
-
-<% if !user_logged_in? %>
-  <p>Create a profile or just log in to get chattin'!</p>
-  <%= link_to 'Login', login_path, class: "btn" %>
-  <%= link_to 'New User', new_user_path, class: "btn" %>
-<% end %>

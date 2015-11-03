@@ -5,7 +5,17 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = []
+    if params[:search].present?
+      parsed_search = params.fetch(:search, '').downcase.strip.split(' ')
+      @users = User.where("
+        lower(first_name) ILIKE ? OR
+        lower(first_name) ILIKE ? OR
+        lower(last_name)  ILIKE ? OR
+        lower(last_name) ILIKE ?",
+                            "%#{parsed_search.first}%", "%#{parsed_search.last}%",
+                            "%#{parsed_search.first}%", "%#{parsed_search.last}%")
+    end
   end
 
   def home

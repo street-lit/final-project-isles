@@ -1,7 +1,15 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
+
       <h1>Listing Users</h1>
+
+      <%= form_tag users_path, :method => 'get' do %>
+        <p>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+        <%= submit_tag "Search", :name => nil %>
+        </p>
+      <% end %>
 
       <table>
         <thead>

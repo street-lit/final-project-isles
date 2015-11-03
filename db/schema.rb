@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102210802) do
+ActiveRecord::Schema.define(version: 20151103025015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 20151102210802) do
   end
 
   add_index "conversations", ["friend_id"], name: "index_conversations_on_friend_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "occasion",                    null: false
+    t.text     "description"
+    t.datetime "dateof"
+    t.boolean  "milestone",   default: false
+    t.integer  "friend_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "events", ["friend_id"], name: "index_events_on_friend_id", using: :btree
 
   create_table "friends", force: :cascade do |t|
     t.integer  "friend_requester_id"
@@ -153,6 +165,7 @@ ActiveRecord::Schema.define(version: 20151102210802) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "conversations", "friends"
+  add_foreign_key "events", "friends"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "friends"
   add_foreign_key "messages", "users"

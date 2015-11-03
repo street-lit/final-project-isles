@@ -9,13 +9,21 @@
 </head>
 <body>
   <% if user_logged_in? %>
+    <ul id="dropdown1" class="dropdown-content">
+      <li><a href="/friends">All</a></li>
+      <li><a href="/events">Timelines</a></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content">
+      <li><a href="/friends">All</a></li>
+      <li><a href="/events">Timelines</a></li>
+    </ul>
     <nav>
       <div class="nav-wrapper">
         <a href="/home" class="brand-logo">Isles</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">reorder</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="/home">Home</a></li>
-          <li><a href="/friends">Friends</a></li>
+          <li><a class="dropdown-button" href="#" data-activates="dropdown1">Friends</a></li>
           <li><a href="/conversations">Conversations</a></li>
           <li><a href="/blogs">Blogs</a></li>
           <li><a href="/albums">Albums</a></li>
@@ -24,7 +32,7 @@
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><a href="/home">Home</a></li>
-          <li><a href="/friends">Friends</a></li>
+          <li><a class="dropdown-button" href="#" data-activates="dropdown2">Friends</a></li>
           <li><a href="/conversations">Conversations</a></li>
           <li><a href="/blogs">Blogs</a></li>
           <li><a href="/albums">Albums</a></li>
