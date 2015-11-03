@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  occasion: MyString
+  description: MyText
+  dateof: 2015-11-02 20:50:15
+  milestone: false
+  friend_id: 
+
+two:
+  occasion: MyString
+  description: MyText
+  dateof: 2015-11-02 20:50:15
+  milestone: false
+  friend_id: 
