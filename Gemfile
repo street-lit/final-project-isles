@@ -56,3 +56,4 @@ end
 
 gem 'materialize-sass'
 gem "paperclip", "~> 4.3"
+gem "pundit"

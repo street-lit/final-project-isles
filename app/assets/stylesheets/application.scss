@@ -19,11 +19,37 @@ body{
   text-align: right;
 }
 
+.dark {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.input-field input[type=search] {
+  display: block;
+  line-height: inherit;
+  padding-left: 4rem;
+  width: calc(100% - 4rem);
+}
+.input-field {
+  position: relative;
+  min-width: 300px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+.input-field input[type=search] ~ .mdi-navigation-close {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  color: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: .3s color;
+}
+
 .intro
 {
     text-align: center;
     padding-top: 13%;
-    padding-bottom: 13%;
+    padding-bottom: 25%;
     margin-bottom: 50px;
 }
 
