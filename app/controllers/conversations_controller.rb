@@ -10,37 +10,21 @@ class ConversationsController < ApplicationController
   # GET /conversations/1
   # GET /conversations/1.json
   def show
-  end
-
-  # GET /conversations/1/edit
-  def edit
+    @conversation = Conversation.find(params[:id])
+    authorize @conversation
   end
 
   # POST /conversations
   # POST /conversations.json
   def create
     @conversation = Conversation.new(conversation_params)
-
+    authorize @conversation
     respond_to do |format|
       if @conversation.save
         format.html { redirect_to @conversation, notice: 'Conversation was successfully created.' }
         format.json { render :show, status: :created, location: @conversation }
       else
-        format.html { render :new }
-        format.json { render json: @conversation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /conversations/1
-  # PATCH/PUT /conversations/1.json
-  def update
-    respond_to do |format|
-      if @conversation.update(conversation_params)
-        format.html { redirect_to @conversation, notice: 'Conversation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @conversation }
-      else
-        format.html { render :edit }
+        format.html { redirect_to :back, notice: "Conversation was not created because #{@conversation.errors.full_messages.each { |message| message } }"  }
         format.json { render json: @conversation.errors, status: :unprocessable_entity }
       end
     end
@@ -49,6 +33,7 @@ class ConversationsController < ApplicationController
   # DELETE /conversations/1
   # DELETE /conversations/1.json
   def destroy
+    authorize @conversation
     @conversation.destroy
     respond_to do |format|
       format.html { redirect_to conversations_url, notice: 'Conversation was successfully destroyed.' }

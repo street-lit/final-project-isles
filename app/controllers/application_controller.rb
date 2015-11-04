@@ -27,4 +27,13 @@ class ApplicationController < ActionController::Base
     session[:logged_in_users_id].present?
   end
   helper_method :user_logged_in?
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(home_path || root_path)
+    end
 end

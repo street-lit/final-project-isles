@@ -11,6 +11,8 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+    @album = Album.find(params[:id])
+    authorize @album
   end
 
   # GET /albums/new
@@ -20,6 +22,8 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1/edit
   def edit
+    @album = Album.find(params[:id])
+    authorize @album
   end
 
   # POST /albums
@@ -27,12 +31,13 @@ class AlbumsController < ApplicationController
   def create
     @album = Album.new(album_params)
     @album.user_id = current_user.id
+    authorize @album
     respond_to do |format|
       if @album.save
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: @album }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: "Album was not created because #{@album.errors.full_messages.each { |message| message } }"  }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +51,7 @@ class AlbumsController < ApplicationController
         format.html { redirect_to @album, notice: 'Album was successfully updated.' }
         format.json { render :show, status: :ok, location: @album }
       else
-        format.html { render :edit }
+        format.html { redirect_to :back, notice: "Album was not updated because #{@album.errors.full_messages.each { |message| message } }"  }
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end
@@ -55,6 +60,7 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
+    authorize @album
     @album.destroy
     respond_to do |format|
       format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }

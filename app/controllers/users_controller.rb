@@ -25,6 +25,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    authorize @user
     @users = User.find(params[:id])
     @requests = User.find(params[:id]).requests
   end
@@ -36,6 +38,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+    authorize @user
   end
 
   # POST /users
@@ -71,6 +75,8 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    authorize @user
+    session[:logged_in_users_id] = nil
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

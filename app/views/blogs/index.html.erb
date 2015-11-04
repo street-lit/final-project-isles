@@ -3,7 +3,13 @@
     <div class='m12'>
       <h1>Blogs</h1>
 
-      <% unless @current_user.blogs.empty? %>
+        <% if @current_user.blogs.empty? %>
+          <div>
+            <h4>You appear to not have a blog or made any posts yet</h4>
+          </div>
+        <% end %>
+
+        <% if !@current_user.blogs.empty? || !@current_user.users_friends_blogs.empty? %>
         <table>
           <thead>
             <tr>
@@ -12,9 +18,18 @@
               <th>Description</th>
             </tr>
           </thead>
-
+        <% end %>
           <tbody>
+          <% unless @current_user.blogs.empty? %>
             <% @current_user.blogs.each do |blog| %>
+              <tr>
+                <td><%= link_to( "#{blog.title}", blog ) %></td>
+                <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
+                <td><%= link_to( "#{blog.description}", blog ) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+            <% @current_user.users_friends_blogs.each do |blog| %>
               <tr>
                 <td><%= link_to( "#{blog.title}", blog ) %></td>
                 <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
@@ -23,7 +38,8 @@
             <% end %>
           </tbody>
         </table>
-      <% end %>
+
+        <br />
 
       <%= link_to 'New Blog', new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %>
     </div>

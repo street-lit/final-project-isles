@@ -46,4 +46,22 @@ class User < ActiveRecord::Base
       [friend.friend_requester_id, friend.friend_accepter_id].include?(user.id)
     end
   end
+
+  def users_friends
+    self.friends.map do |friend|
+      friend.other_user(self)
+    end
+  end
+
+  def users_friends_blogs
+    self.users_friends.flat_map do |friend|
+      friend.blogs
+    end
+  end
+
+  def users_friends_albums
+    self.users_friends.flat_map do |friend|
+      friend.albums
+    end
+  end
 end

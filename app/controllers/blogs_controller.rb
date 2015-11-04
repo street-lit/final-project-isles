@@ -11,6 +11,8 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @blog = Blog.find(params[:id])
+    authorize @blog
     @blogs = Blog.order(created_at: :desc)
     @posts = Post.order(created_at: :desc)
   end
@@ -23,6 +25,8 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+    @blog = Blog.find(params[:id])
+    authorize @blog
   end
 
   # POST /blogs
@@ -31,12 +35,13 @@ class BlogsController < ApplicationController
     authenticate_user
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+    authorize @blog
     respond_to do |format|
       if @blog.save
         format.html { redirect_to @blog, notice: 'New Blog successfully created.' }
         format.json { render :show, status: :created, location: @blog }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: "Blog was not created because #{@blog.errors.full_messages.each { |message| message } }"  }
         format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
@@ -50,7 +55,7 @@ class BlogsController < ApplicationController
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog }
       else
-        format.html { render :edit }
+        format.html { redirect_to :back, notice: "Blog was not updated because #{@blog.errors.full_messages.each { |message| message } }"  }
         format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
@@ -59,6 +64,7 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1
   # DELETE /blogs/1.json
   def destroy
+    authorize @blog
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }

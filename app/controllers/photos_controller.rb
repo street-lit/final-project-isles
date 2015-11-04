@@ -2,16 +2,11 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user
 
-  # GET /photos
-  # GET /photos.json
-  def index
-    @photos = Photo.all
-  end
-
   # GET /photos/1
   # GET /photos/1.json
   def show
     @photo = Photo.find(params[:id])
+    authorize @photo
     @observation = Observation.new
   end
 
@@ -22,19 +17,21 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
+    @photo = Photo.find(params[:id])
+    authorize @photo
   end
 
   # POST /photos
   # POST /photos.json
   def create
     @photo = Photo.new(photo_params)
-
+    authorize @photo
     respond_to do |format|
-      if @photo.save
+      if !params[:image].nil? && @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
-        format.html { render :new }
+        format.html { redirect_to :back, notice: "Photo was not created because no image was uploaded"  }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
@@ -48,7 +45,7 @@ class PhotosController < ApplicationController
         format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
       else
-        format.html { render :edit }
+        format.html { redirect_to :back, notice: "Photo was not updated because no image was uploaded"  }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
@@ -57,9 +54,10 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
+    authorize @photo
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Photo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -16,16 +16,9 @@
     <%= f.text_area :body %>
   </div>
   <div class="field">
-    <%= f.label :post_id %><br>
-    <%= f.text_field :post_id %>
-  </div>
-  <div class="field">
-    <%= f.label :blog_id %><br>
-    <%= f.text_field :blog_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.hidden_field :post_id, value: params[:post_id] %>
+    <%= f.hidden_field :blog_id, value: params[:blog_id] %>
+    <%= f.hidden_field :user_id, value: params[:user_id] %>
   </div>
   <div class="actions">
     <%= f.submit class: "btn light-green accent-4" %>

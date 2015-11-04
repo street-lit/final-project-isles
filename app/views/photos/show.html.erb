@@ -11,23 +11,27 @@
         <%= link_to "#{@photo.user.full_name}", @photo.user %>
       </p>
 
-      <p>
-        <strong>Location:</strong>
-        <%= @photo.location %>
-      </p>
+      <% unless @photo.description.nil? %>
+        <p>
+          <strong>Location:</strong>
+          <%= @photo.location %>
+        </p>
+      <% end %>
 
       <%= image_tag @photo.image.url(:medium) %>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @photo.description %>
-      </p>
+      <% unless @photo.description.nil? %>
+        <p>
+          <strong>Description:</strong>
+          <%= @photo.description %>
+        </p>
+      <% end %>
 
       <ul>
         <% @photo.observations.each do |observation| %>
           <li>
             <strong><%= observation.user.full_name %> said:</strong>
-            <%= observation.body %>
+            <%= link_to "#{observation.body}", observation %>
           </li>
         <% end %>
       </ul>
@@ -50,10 +54,10 @@
         <hr>
       </section>
 
-      <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" if @photo.user_id == @current_user.id %>
       <%= link_to "Back", :back, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4"  %>
+      <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" if @photo.user_id == @current_user.id %>
+      <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @photo.user_id == @current_user.id %>
 
 
 

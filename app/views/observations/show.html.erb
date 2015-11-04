@@ -1,28 +1,16 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <p>
-        <strong>Body:</strong>
-        <%= @observation.body %>
-      </p>
 
-      <p>
-        <strong>Photo:</strong>
-        <%= @observation.photo %>
-      </p>
+      <div>
+        <h5>
+          On the album, "<%= "#{@observation.album.title}" %>"<strong> <%= @observation.user.full_name %></strong> said: "<%="#{ @observation.body }"%>" on the photo, "<%= "#{@observation.photo.description}" unless @observation.photo.description.nil? %>" by <%= "#{@observation.album.user.full_name}"%>
+        </h5>
+      </div>
 
-      <p>
-        <strong>Album:</strong>
-        <%= @observation.album %>
-      </p>
-
-      <p>
-        <strong>User:</strong>
-        <%= @observation.user %>
-      </p>
-
-      <%= link_to 'Edit', edit_observation_path(@observation), class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Back', :back, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Edit', edit_observation_path(:user_id => @observation.user, :album_id => @observation.album, :photo_id => @observation.photo), class: "waves-effect waves-light btn light-green accent-4" if @observation.user_id == @current_user.id %>
+      <%= link_to 'Back', @observation.photo, class: "waves-effect waves-light btn light-green accent-4" %>
+      <%= link_to 'Delete observation', @observation, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @observation.user_id == @current_user.id %>
     </div>
   </div>
 </div>

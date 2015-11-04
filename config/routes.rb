@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :events
-  resources :conversations
-  resources :messages
-  resources :conversations
+
   get     '/login',     to: 'sessions#new',        as: 'new_login'
   post    '/login',     to: 'sessions#create',     as: 'login'
   delete  '/logout',    to: 'sessions#destroy',    as: 'logout'
@@ -16,13 +13,17 @@ Rails.application.routes.draw do
 
   resources :users
   resources :blogs
-  resources :posts
-  resources :comments
+  resources :posts, only: [:new, :show, :create, :edit, :update, :destroy]
+  resources :comments, only: [:show, :create, :edit, :update, :destroy]
   resources :friends
   resources :requests
-  resources :observations
-  resources :photos
+  resources :observations, only: [:show, :create, :edit, :update, :destroy]
+  resources :photos, only: [:new, :show, :create, :edit, :update, :destroy]
   resources :albums
+  resources :events
+  resources :conversations, only: [:index, :show, :create, :destroy]
+  resources :messages, only: [:new, :create, :destroy]
+  resources :conversations
 
   root "landing_pages#about"
 end

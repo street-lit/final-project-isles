@@ -54,6 +54,8 @@ class FriendsController < ApplicationController
   # DELETE /friends/1
   # DELETE /friends/1.json
   def destroy
+    @request = Request.where(user_id: [@friend.friend_requester_id, @friend.friend_accepter_id], requested_friend_id: [@friend.friend_requester_id, @friend.friend_accepter_id]).first
+    @request.destroy
     @friend.destroy
     respond_to do |format|
       format.html { redirect_to friends_url, notice: 'Friend was successfully destroyed.' }
