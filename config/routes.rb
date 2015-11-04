@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :blogs
   resources :posts, only: [:new, :show, :create, :edit, :update, :destroy]
   resources :comments, only: [:show, :create, :edit, :update, :destroy]
-  resources :friends
+  resources :friends, only: [:index, :new, :create, :destroy]
   resources :requests
   resources :observations, only: [:show, :create, :edit, :update, :destroy]
   resources :photos, only: [:new, :show, :create, :edit, :update, :destroy]

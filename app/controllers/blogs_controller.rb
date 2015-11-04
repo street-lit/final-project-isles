@@ -19,7 +19,6 @@ class BlogsController < ApplicationController
 
   # GET /blogs/new
   def new
-    authenticate_user
     @blog = Blog.new
   end
 
@@ -32,7 +31,6 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    authenticate_user
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     authorize @blog

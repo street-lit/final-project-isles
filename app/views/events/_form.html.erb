@@ -28,8 +28,7 @@
     <%= f.check_box :milestone %>
   </div>
   <div class="field">
-    <%= f.label :friend_id %><br>
-    <%= f.text_field :friend_id %>
+    <%= f.hidden_field :friend_id, value: params[:friend_id] %>
   </div>
   <div class="actions">
     <%= f.submit class: "btn light-green accent-4"  %>

@@ -5,6 +5,7 @@
       <% @friends.each do |friend| %>
         <% unless friend.events.empty? %>
         <h3><%= friend.friend_not_user(@current_user) %></h3>
+        <p><%= link_to "Create New Event with #{friend.friend_not_user(@current_user)}", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
           <table>
             <thead>
               <tr>
@@ -37,7 +38,6 @@
       <% end %>
       <br>
 
-      <%= link_to 'New Event', new_event_path, class: "waves-effect waves-light btn light-green accent-4"  %>
     </div>
   </div>
 </div>

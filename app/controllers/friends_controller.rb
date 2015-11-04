@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user
 
   # GET /friends
   # GET /friends.json
@@ -7,18 +8,9 @@ class FriendsController < ApplicationController
     @friends = Friend.all
   end
 
-  # GET /friends/1
-  # GET /friends/1.json
-  def show
-  end
-
   # GET /friends/new
   def new
     @friend = Friend.new
-  end
-
-  # GET /friends/1/edit
-  def edit
   end
 
   # POST /friends
@@ -31,21 +23,7 @@ class FriendsController < ApplicationController
         format.html { redirect_to @friend, notice: 'Friend was successfully created.' }
         format.json { render :show, status: :created, location: @friend }
       else
-        format.html { render :new }
-        format.json { render json: @friend.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /friends/1
-  # PATCH/PUT /friends/1.json
-  def update
-    respond_to do |format|
-      if @friend.update(friend_params)
-        format.html { redirect_to @friend, notice: 'Friend was successfully updated.' }
-        format.json { render :show, status: :ok, location: @friend }
-      else
-        format.html { render :edit }
+        format.html { redirect_to :back, notice: "Friend was not created because #{@friend.errors.full_messages.each { |message| message } }"  }
         format.json { render json: @friend.errors, status: :unprocessable_entity }
       end
     end

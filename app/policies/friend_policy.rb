@@ -6,14 +6,6 @@ class FriendPolicy < ApplicationPolicy
     @friend = friend
   end
 
-  def show?
-    @friend.user_id == @current_user.id || @current_user.is_friends(@friend.user)
-  end
-
-  def edit?
-    @friend.user_id == @current_user.id
-  end
-
   def create?
     @friend.user_id == @current_user.id
   end
