@@ -1,6 +1,6 @@
 @import "materialize/components/color";
-$primary-color: color("cyan", "lighten-1") !default;
-$secondary-color: color("light-green", "accent-4") !default;
+$primary-color: color("light-blue", "darken-4") !default;
+$secondary-color: color("green", "darken-1") !default;
 @import 'materialize';
 
 * {
@@ -8,89 +8,64 @@ $secondary-color: color("light-green", "accent-4") !default;
   padding: 0;
 }
 
+a, p {
+  font-family: 'Arimo', sans-serif;
+}
+
+.brand-logo, footer h5, h1, th, h2, h3, h4, h6, .island {
+  font-family: 'Pacifico', cursive;
+}
+
+html, body {
+  height: 100%;
+}
+
 body{
   background-color: #fff8e1;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.author {
+  padding-right: 20px;
+}
+
+.aboutbg {
+  background: image-url('about_page.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.bigger {
+  font-size: 1.3em;
+}
+
+.brand-logo {
+  margin-left: 20px;
 }
 
 .center-text {
   text-align: center;
 }
 
-.justify-right {
-  text-align: right;
-}
-
 .dark {
   background: rgba(0, 0, 0, 0.2);
 }
 
-.input-field input[type=search] {
-  display: block;
-  line-height: inherit;
-  padding-left: 4rem;
-  width: calc(100% - 4rem);
-}
-.input-field {
-  position: relative;
-  min-width: 300px;
-  overflow: hidden;
-  margin-top: 1rem;
-}
-.input-field input[type=search] ~ .mdi-navigation-close {
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  color: transparent;
-  cursor: pointer;
-  font-size: 2rem;
-  transition: .3s color;
+footer h5 {
+  padding: 0px;
 }
 
-.intro
-{
-    text-align: center;
-    padding-top: 13%;
-    padding-bottom: 25%;
-    margin-bottom: 50px;
+footer.page-footer {
+  margin: 0px;
+  padding: 1px;
 }
 
-.intro h1
-{
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.intro h5
-{
-    // text-transform: uppercase;
-    background-color: #f5f5f5;
-    padding: 10px;
-    color: #333333;
-    display: inline-block;
-    font-size: 1.2rem;
-}
-
-// .aboutBackground {
-//     background-image: url(image-path("landing_page.jpeg"));
-//     background-color: #cccccc;
-//     -webkit-background-size: cover;
-//     -moz-background-size: cover;
-//     -o-background-size: cover;
-//     background-size: cover;
-//     width: 100%;
-//     height: 100%;
-// }
-
-.page-wrap {
-    position: relative;
-    width: 90%;
-    height: 100%;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    -moz-box-shadow: 0 0 20px black;
-    -webkit-box-shadow: 0 0 20px black;
-    box-shadow: 0 0 20px black;
+footer .row{
+  margin: 0px;
 }
 
 img.bg {
@@ -106,6 +81,86 @@ img.bg {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.input-field input[type=search] {
+  display: block;
+  line-height: inherit;
+  padding-left: 4rem;
+  width: calc(100% - 4rem);
+}
+
+.input-field {
+  position: relative;
+  min-width: 300px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.input-field input[type=search] ~ .mdi-navigation-close {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  color: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: .3s color;
+}
+
+.intro {
+    text-align: center;
+    padding-top: 8%;
+    padding-bottom: 25%;
+    margin-bottom: 50px;
+}
+
+.intro h1 {
+    font-weight: 400;
+    font-size: 5em;
+}
+
+.intro h5 {
+    // text-transform: uppercase;
+    background-color: #f5f5f5;
+    padding: 10px;
+    color: #333333;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.justify-right {
+  text-align: right;
+}
+
+// .aboutBackground {
+//     background-image: url(image-path("landing_page.jpeg"));
+//     background-color: #cccccc;
+//     -webkit-background-size: cover;
+//     -moz-background-size: cover;
+//     -o-background-size: cover;
+//     background-size: cover;
+//     width: 100%;
+//     height: 100%;
+// }
+
+main {
+  flex: 1 0 auto;
+}
+
+.page-wrap {
+    position: relative;
+    width: 90%;
+    height: 100%;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    -moz-box-shadow: 0 0 20px black;
+    -webkit-box-shadow: 0 0 20px black;
+    box-shadow: 0 0 20px black;
+}
+
+.quote {
+  padding-left: 20px;
 }
 
 @media screen and (max-width: 1024px) { /* Specific to this particular image */

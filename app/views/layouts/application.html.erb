@@ -2,12 +2,15 @@
 <html>
 <head>
   <title>Isles</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
   <%= javascript_include_tag 'application' %>
 </head>
 <body>
+  <main>
   <% if user_logged_in? %>
     <ul id="dropdown1" class="dropdown-content">
       <li><a href="/friends">All</a></li>
@@ -61,7 +64,6 @@
       </div>
     </nav>
   <% end %>
-  <main>
     <% if notice || alert %>
       <script>
         $(document).ready(function () {
@@ -70,10 +72,18 @@
       </script>
     <% end %>
     <%= yield %>
-    <footer>
-      <%= params.inspect if Rails.env.development? %>
-      <%= @current_user.inspect if Rails.env.development? %>
-    </footer>
   </main>
+  <footer class="page-footer light-blue darken-4">
+    <div class="container light-blue darken-4">
+      <div class="light-blue darken-4">
+        <h5 class="white-text">Isles</h5>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container ">
+      <p class="white-text">In a common sea<span class="right"><a class="white-text" href="http://github.com/MikeRobertHughes"> © 2015 Mike Hughes </a></span></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

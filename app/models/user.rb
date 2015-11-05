@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150#" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :requests, dependent: :destroy
   has_many :requested_friends, through: :requests, dependent: :destroy

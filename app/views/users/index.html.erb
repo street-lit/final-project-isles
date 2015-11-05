@@ -11,7 +11,7 @@
         </p>
       <% end %>
 
-      <% unless @users.empty? %>
+      <% unless @users.empty? || @users.first == @current_user %>
         <table>
           <thead>
             <tr>

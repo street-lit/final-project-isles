@@ -1,6 +1,11 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
+    <br />
+      <p>
+        <%= image_tag @user.image.url(:medium) unless @user.image.url(:medium) == "/images/medium/missing.png" %>
+      </p>
+
       <p>
         <strong>First name:</strong>
         <%= @user.first_name %>
