@@ -11,7 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
-*.jpg
-*.jpeg
+public/system/photos
+public/system/users
 # Ignore application configuration
 /config/application.yml
