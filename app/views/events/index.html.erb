@@ -1,7 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <h1>Listing Events</h1>
+      <h1>Timelines</h1>
       <% @friends.each do |friend| %>
         <% unless friend.events.empty? %>
         <h3><%= friend.friend_not_user(@current_user) %></h3>

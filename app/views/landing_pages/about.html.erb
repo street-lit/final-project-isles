@@ -1,14 +1,15 @@
 <div class="aboutbg">
-  <br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br />
   <div class='container'>
     <div class='row'>
-      <div class='m12 page-wrap'>
+      <div id="about" class='about m12 page-wrap amber lighten-5'>
         <h1 class="justify-left quote">I feel we are all islands in a common sea.</h1>
         <h3 class="justify-right author"> ~Anne Morrow Lindbergh</h3>
         <br/>
-        <h5 class="center-text">Welcome to a social network built to help cultivate <span class="island bigger"><strong>real</strong></span> relationships!
+        <h5 class="center-text">Welcome to a social network built to help cultivate <span class="island bigger little-pad-right"><strong>real</strong></span> relationships!
         </h5>
-        <p class="center bigger">Click here to <%= link_to "login", new_login_path %> or <%= link_to "sign up", new_user_path %></p>
+        <br />
+        <p class="center bigger"><%= link_to "Sign In", new_login_path, class: "waves-effect waves-light btn light-green accent-4" %> or <%= link_to "Sign Up", new_user_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
         <br />
       </div>
     </div>

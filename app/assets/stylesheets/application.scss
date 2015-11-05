@@ -3,21 +3,10 @@ $primary-color: color("light-blue", "darken-4") !default;
 $secondary-color: color("green", "darken-1") !default;
 @import 'materialize';
 
+// HTML Elements
 * {
   margin: 0;
   padding: 0;
-}
-
-a, p {
-  font-family: 'Arimo', sans-serif;
-}
-
-.brand-logo, footer h5, h1, th, h2, h3, h4, h6, .island {
-  font-family: 'Pacifico', cursive;
-}
-
-html, body {
-  height: 100%;
 }
 
 body{
@@ -27,16 +16,42 @@ body{
   flex-direction: column;
 }
 
+html, body {
+  height: 100%;
+}
+
+// Specific Styling for multiple Elements, Classes, Ids
+
+a, p {
+  font-family: 'Arimo', sans-serif;
+}
+
+.brand-logo, footer h5, h1, th, h2, h3, h4, h6, .island {
+  font-family: 'Pacifico', cursive;
+}
+
+//Class and specific element styling
+
 .author {
   padding-right: 20px;
 }
 
+#about {
+  margin: 20px auto;
+  width: 97%;
+}
+
 .aboutbg {
-  background: image-url('about_page.jpeg') no-repeat center center fixed;
+  background: image-url('landing_page.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+#backgroundCardBorder {
+  margin: 20px auto;
+  width: 97%;
 }
 
 .bigger {
@@ -117,6 +132,7 @@ img.bg {
 .intro h1 {
     font-weight: 400;
     font-size: 5em;
+    text-shadow: 1px 1px black;
 }
 
 .intro h5 {
@@ -143,6 +159,19 @@ img.bg {
 //     height: 100%;
 // }
 
+.little-pad-right {
+  padding-right: 5px;
+}
+
+#login {
+  padding: 60px;
+}
+
+#login h1{
+  margin-bottom: 40px;
+  margin-top: -40px;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -152,15 +181,31 @@ main {
     width: 90%;
     height: 100%;
     margin: 50px auto;
-    padding: 20px;
+    padding: 50px;
     background: white;
     -moz-box-shadow: 0 0 20px black;
     -webkit-box-shadow: 0 0 20px black;
     box-shadow: 0 0 20px black;
 }
 
+.paperbg {
+  background: image-url('ricepaper2.png') repeat center center;
+  -webkit-background-size: repeat;
+  -moz-background-size: repeat;
+  -o-background-size: repeat;
+  background-size: repeat;
+}
+
 .quote {
   padding-left: 20px;
+}
+
+.woodbg {
+  background: image-url('wood_pattern.png') repeat center center;
+  -webkit-background-size: repeat;
+  -moz-background-size: repeat;
+  -o-background-size: repeat;
+  background-size: repeat;
 }
 
 @media screen and (max-width: 1024px) { /* Specific to this particular image */

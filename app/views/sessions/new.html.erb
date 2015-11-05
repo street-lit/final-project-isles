@@ -1,15 +1,24 @@
-<div class='container'>
-  <div class='row'>
-    <div class='m12'>
-      <h1>Login</h1>
+<div class="aboutbg">
+  <br /><br /><br /><br /><br />
+    <div class='container'>
+      <div class='row'>
+        <div class='m12 page-wrap amber lighten-5'>
+          <div id="login">
+            <h1 class="center">Login</h1>
 
-      <%= form_tag login_path do %>
-        <p>Username: <%= text_field_tag :username %></p>
-        <p>Password: <%= password_field_tag :password %></p>
-        <p><%= submit_tag "Submit", class: "btn light-green accent-4"  %></p>
-      <% end %>
-
-      <p>New here? <%= link_to 'Click here', new_user_path %> to signup</p>
+            <%= form_tag login_path do %>
+              <p>Username: <%= text_field_tag :username %></p>
+              <p>Password: <%= password_field_tag :password %></p>
+              <p><%= submit_tag "Submit", class: "btn light-green accent-4"  %></p>
+            <% end %>
+            <br />
+            <p>Don't have an account? <%= link_to 'Click here', new_user_path %> to signup</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  <br /><br /><br /><br /><br />
 </div>
+
+
+
