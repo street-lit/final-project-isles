@@ -24,15 +24,21 @@
 
       <ul>
         <% @post.comments.each do |comment| %>
-          <li>
-            <strong><%= comment.user.full_name %> said:</strong>
-            <%= link_to "#{comment.body}", comment %>
-          </li>
+          <% if comment.user == @current_user || @post.user == @current_user || @current_user.is_friends(@post.user) && comment.user == @post.user %>
+            <li>
+              <strong><%= comment.user.full_name %> said:</strong>
+              <%if @current_user == comment.user %>
+                <%= link_to "#{comment.body}", comment %>
+              <% else %>
+                <%= comment.body %>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
 
       <section class="comments">
-        <h3> Comments (<%= @post.comments.count %>)</h3>
+        <h3> Comments</h3>
         <hr>
         <%= form_for(@comment) do |f| %>
           <%= f.hidden_field :post_id, value: @post.id %>

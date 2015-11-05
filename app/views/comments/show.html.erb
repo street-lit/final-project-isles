@@ -4,7 +4,7 @@
 
       <div>
         <h5>
-          On the blog, "<%= "#{@comment.blog.title}" %>"<strong> <%= @comment.user.full_name %></strong> said: "<%="#{ @comment.body }"%>" on the post, "<%= "#{@comment.post.title}" %>" by <%= "#{@comment.blog.user.full_name}"%>
+          On the post, "<%= "#{@comment.post.title}" %>" in the blog, "<%= "#{@comment.blog.title}" %>" by <%= "#{@comment.blog.user.full_name}"%>, <%= @comment.user.full_name %> said, "<%="#{ @comment.body }"%>"
         </h5>
       </div>
 
