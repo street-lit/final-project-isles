@@ -10,34 +10,42 @@
         <% end %>
 
         <% if !@current_user.blogs.empty? || !@current_user.users_friends_blogs.empty? %>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>User</th>
-              <th>Description</th>
-            </tr>
-          </thead>
+
         <% end %>
-          <tbody>
+
           <% unless @current_user.blogs.empty? %>
             <% @current_user.blogs.each do |blog| %>
-              <tr>
-                <td><%= link_to( "#{blog.title}", blog ) %></td>
-                <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
-                <td><%= link_to( "#{blog.description}", blog ) %></td>
-              </tr>
+              <%= link_to blog do %>
+                <div>
+                  <ul class="collection">
+                    <li class="collection-item avatar">
+                      <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
+                      <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
+                      <p><%= blog.description %></p>
+                      <p class="pacifico-font"><%= blog.user.full_name %></p>
+                      <i class="material-icons secondary-content">format_align_left</i>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
             <% @current_user.users_friends_blogs.each do |blog| %>
-              <tr>
-                <td><%= link_to( "#{blog.title}", blog ) %></td>
-                <td><%= link_to( "#{blog.user.full_name}", blog.user ) %></td>
-                <td><%= link_to( "#{blog.description}", blog ) %></td>
-              </tr>
+              <%= link_to blog do %>
+                <div>
+                  <ul class="collection">
+                    <li class="collection-item avatar">
+                      <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
+                      <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
+                      <p><%= blog.description %></p>
+                      <p class="pacifico-font"><%= blog.user.full_name %></p>
+                      <i class="material-icons secondary-content">format_align_left</i>
+                    </li>
+                  </ul>
+                </div>
+              <% end %>
             <% end %>
-          </tbody>
-        </table>
+
 
         <br />
 

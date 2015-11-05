@@ -26,7 +26,7 @@ a, p {
   font-family: 'Arimo', sans-serif;
 }
 
-.brand-logo, footer h5, h1, th, h2, h3, h4, h6, .island {
+.brand-logo, footer h5, h1, th, h2, h3, h4, h6, .island, .pacifico-font {
   font-family: 'Pacifico', cursive;
 }
 
@@ -67,7 +67,7 @@ a, p {
 }
 
 .dark {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.9);
 }
 
 footer h5 {
@@ -158,6 +158,10 @@ img.bg {
 //     width: 100%;
 //     height: 100%;
 // }
+
+.little-margin {
+  margin: 5px;
+}
 
 .little-pad-right {
   padding-right: 5px;

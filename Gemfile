@@ -57,3 +57,5 @@ end
 gem 'materialize-sass'
 gem "paperclip", "~> 4.3"
 gem "pundit"
+gem "aws-sdk", '<2.0'
+gem "figaro"
