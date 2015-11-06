@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150#" }, :storage => :s3, :bucket => "sparehand", :url =>':s3_domain_url',
-  :path => ':class/:attachment/:id_partition/:style/:filename', default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150#" }, default_url: "/images/:style/missing.png", :storage => :s3, :bucket => "isles", :url =>':s3_domain_url',
+  :path => ':class/:attachment/:id_partition/:style/:filename'
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :requests, dependent: :destroy
