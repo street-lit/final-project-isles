@@ -5,7 +5,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @friends = Friend.all
+    @user = current_user
+    @friends = @user.friends
     @events = Event.order(friend_id: :asc, dateof: :asc, created_at: :asc)
   end
 

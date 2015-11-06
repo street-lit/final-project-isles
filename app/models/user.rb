@@ -10,18 +10,19 @@ class User < ActiveRecord::Base
   :path => ':class/:attachment/:id_partition/:style/:filename'
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  has_many :albums, dependent: :destroy
+  has_many :blogs, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :friend_requested_friends, :class_name => 'Friend', :foreign_key => 'friend_requester_id', dependent: :destroy
+  has_many :friend_accepted_friends, :class_name => 'Friend', :foreign_key => 'friend_accepter_id', dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :observations, dependent: :destroy
+  has_many :photos, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :requested_friends, through: :requests, dependent: :destroy
   has_many :reverse_requests, class_name: "Request", foreign_key: "requested_friend_id", dependent: :destroy
   has_many :reverse_requested_friends, through: :reverse_requests, source: :user, dependent: :destroy
-  has_many :friend_requested_friends, :class_name => 'Friend', :foreign_key => 'friend_requester_id', dependent: :destroy
-  has_many :friend_accepted_friends, :class_name => 'Friend', :foreign_key => 'friend_accepter_id', dependent: :destroy
-  has_many :blogs, dependent: :destroy
-  has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :albums, dependent: :destroy
-  has_many :photos, dependent: :destroy
-  has_many :observations, dependent: :destroy
 
   def full_name
     "#{self.first_name} #{self.last_name}"

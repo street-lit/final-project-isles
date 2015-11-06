@@ -29,15 +29,21 @@
 
       <ul>
         <% @photo.observations.each do |observation| %>
-          <li>
-            <strong><%= observation.user.full_name %> said:</strong>
-            <%= link_to "#{observation.body}", observation %>
-          </li>
+          <% if observation.user == @current_user || @photo.user == @current_user || @current_user.is_friends(@photo.user) && observation.user == @photo.user %>
+            <li>
+              <strong><%= observation.user.full_name %> said:</strong>
+              <%if @current_user == observation.user %>
+                <%= link_to "#{observation.body}", observation %>
+              <% else %>
+                <%= observation.body %>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
 
       <section class="observations">
-        <h3> Comments (<%= @photo.observations.count %>)</h3>
+        <h3> Comments <%= "(#{@photo.observations.count})" if @photo.user == @current_user %></h3>
         <hr>
         <%= form_for(@observation) do |f| %>
           <%= f.hidden_field :photo_id, value: @photo.id %>

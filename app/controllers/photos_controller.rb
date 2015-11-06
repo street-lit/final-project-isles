@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     authorize @photo
     respond_to do |format|
-      if !params[:image].nil? && @photo.save
+      if @photo.save
         format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
@@ -55,9 +55,10 @@ class PhotosController < ApplicationController
   # DELETE /photos/1.json
   def destroy
     authorize @photo
+    album = @photo.album
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Photo was successfully destroyed.' }
+      format.html { redirect_to album, notice: 'Photo was successfully deleted.' }
       format.json { head :no_content }
     end
   end

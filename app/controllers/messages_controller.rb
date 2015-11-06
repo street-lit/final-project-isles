@@ -2,11 +2,6 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user
 
-  # GET /messages/new
-  def new
-    @message = Message.new
-  end
-
   # POST /messages
   # POST /messages.json
   def create

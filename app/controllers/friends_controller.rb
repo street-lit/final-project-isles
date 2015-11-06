@@ -8,11 +8,6 @@ class FriendsController < ApplicationController
     @friends = Friend.all
   end
 
-  # GET /friends/new
-  def new
-    @friend = Friend.new
-  end
-
   # POST /friends
   # POST /friends.json
   def create

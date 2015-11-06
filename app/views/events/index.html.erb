@@ -4,8 +4,8 @@
       <h1>Timelines</h1>
       <% @friends.each do |friend| %>
         <% unless friend.events.empty? %>
-        <h3><%= friend.friend_not_user(@current_user) %></h3>
-        <p><%= link_to "Create New Event with #{friend.friend_not_user(@current_user)}", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
+        <h3><%= friend.friend_not_user(@current) %></h3>
+        <p><%= link_to "Create New Event", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
           <table>
             <thead>
               <tr>
@@ -36,6 +36,12 @@
           <br />
         <% end %>
       <% end %>
+      <% @friends.each do |friend| %>
+        <% if friend.events.empty? %>
+          <h3>You don't have any events with <%= "#{friend.friend_not_user(@current_user)}"%></h3>
+          <p><%= link_to "Create New Event", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
+          <% end %>
+        <% end %>
       <br>
 
     </div>

@@ -1,16 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-
-  # GET /requests
-  # GET /requests.json
-  def index
-    @requests = Request.all
-  end
-
-  # GET /requests/1
-  # GET /requests/1.json
-  def show
-  end
+  before_action :authenticate_user
 
   def accept
     @requests = Request.find_by_user_id_and_requested_friend_id(params[:user_id], params[:requested_friend_id])
@@ -30,20 +20,9 @@ class RequestsController < ApplicationController
 
   def deny
     @requests = Request.find_by_user_id_and_requested_friend_id(params[:user_id], params[:requested_friend_id])
-    @requests.are_friends = false
-    @requests.did_confirm = true
-    @requests.save
+    @requests.destroy
     flash[:notice] = "You have denied the friend request sent by #{@requests.user.full_name}"
     redirect_to home_path
-  end
-
-  # GET /requests/new
-  def new
-    @request = Request.new
-  end
-
-  # GET /requests/1/edit
-  def edit
   end
 
   # POST /requests
@@ -56,20 +35,6 @@ class RequestsController < ApplicationController
     else
       flash[:error] = "Unable to Send Request."
       redirect_to :back
-    end
-  end
-
-  # PATCH/PUT /requests/1
-  # PATCH/PUT /requests/1.json
-  def update
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
-      else
-        format.html { render :edit }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
     end
   end
 

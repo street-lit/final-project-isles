@@ -49,9 +49,10 @@ class ObservationsController < ApplicationController
   # DELETE /observations/1.json
   def destroy
     authorize @observation
+    photo = @observation.photo
     @observation.destroy
     respond_to do |format|
-      format.html { redirect_to observations_url, notice: 'Observation was successfully destroyed.' }
+      format.html { redirect_to photo, notice: 'Observation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

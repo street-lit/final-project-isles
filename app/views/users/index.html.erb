@@ -7,7 +7,7 @@
       <%= form_tag users_path, :method => 'get' do %>
         <p>
         <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
-        <%= submit_tag "Search", :name => nil %>
+        <%= submit_tag "Search", :name => nil, class: "btn light-green accent-4" %>
         </p>
       <% end %>
 
@@ -47,7 +47,6 @@
       <% end %>
       <br>
 
-      <%= link_to 'Sign up!', new_user_path, class: "waves-effect waves-light btn light-green accent-4" %>
     </div>
   </div>
 </div>
