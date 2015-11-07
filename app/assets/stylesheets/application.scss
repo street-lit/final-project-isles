@@ -16,9 +16,9 @@ body{
   flex-direction: column;
 }
 
-html, body {
-  height: 100%;
-}
+// html, body {
+//   height: 100%;
+// }
 
 // Specific Styling for multiple Elements, Classes, Ids
 
@@ -41,12 +41,15 @@ a, p {
   width: 97%;
 }
 
-.aboutbg {
+
+
+body {
   background: image-url('landing_page.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 700px;
 }
 
 #backgroundCardBorder {
@@ -71,7 +74,16 @@ a, p {
 }
 
 .dark {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.2);
+  outline: 1px black;
+}
+
+.decent-margin {
+  margin: 15px;
+}
+
+.big-margin {
+  margin: 30px;
 }
 
 .decent-margin-top {
@@ -80,6 +92,10 @@ a, p {
 
 .decent-margin-bottom {
   margin-bottom: 15px;
+}
+
+.decent-padding {
+  padding: 15px;
 }
 
 footer h5 {
@@ -187,6 +203,10 @@ img.bg {
   margin-top: 5px;
 }
 
+.little-margin-bottom {
+  margin-bottom: 5px;
+}
+
 #login {
   padding: 60px;
 }
@@ -198,6 +218,14 @@ img.bg {
 
 main {
   flex: 1 0 auto;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px;
 }
 
 .page-wrap {
@@ -255,5 +283,5 @@ main {
 
 .scroll {
   overflow-y: scroll;
-  height: 400px;
+  height: 450px;
 }

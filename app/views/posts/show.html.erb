@@ -1,67 +1,63 @@
-<div class='container'>
-  <div class='row'>
-    <div class='m12'>
-      <p>
-        <strong>Blog:</strong>
-        <%= @post.blog.title %>
-      </p>
+<div class="aboutbg">
+  <br />
+  <div class='container'>
+    <div class='row'>
+      <div class='m12'>
+        <h1 class="center grey-text text-lighten-5 blogs"><%= @post.title %></h1>
+        <br />
 
-      <p>
-        <strong>Title:</strong>
-        <%= @post.title %>
-      </p>
+          <div class="card amber lighten-5 decent-padding">
+            <p class="bigger">
+              <%= @post.body %>
+            </p>
+          </div>
 
-      <p>
-        <strong>
-        <%= @post.user.full_name %>
-        </strong>
-      </p>
-
-      <p>
-        <strong>Body:</strong>
-        <%= @post.body %>
-      </p>
-
-      <ul>
-        <% @post.comments.each do |comment| %>
-          <% if comment.user == @current_user || @post.user == @current_user || @current_user.is_friends(@post.user) && comment.user == @post.user %>
-            <li>
-              <strong><%= comment.user.full_name %> said:</strong>
-              <%if @current_user == comment.user %>
-                <%= link_to "#{comment.body}", comment %>
-              <% else %>
-                <%= comment.body %>
+          <div class="card">
+            <section class="comments side-margin-left side-margin-right ">
+              <h3>Comments <%= "(#{@post.comments.count})" if @post.user == @current_user %></h3>
+              <%= form_for(@comment) do |f| %>
+                <%= f.hidden_field :post_id, value: @post.id %>
+                <%= f.hidden_field :blog_id, value: @post.blog_id %>
+                <%= f.hidden_field :user_id, value: @current_user.id %>
+                <p>
+                  <%= f.text_area :body %>
+                  <p class="errors"></p>
+                </p>
+                <div class="actions">
+                <%= f.submit "Comment", class: "btn light-green accent-4" %>
+                <br /><br />
+              </div>
               <% end %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
+            </section>
 
-      <section class="comments">
-        <h3>Comments <%= "(#{@post.comments.count})" if @post.user == @current_user %></h3>
-        <hr>
-        <%= form_for(@comment) do |f| %>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <%= f.hidden_field :blog_id, value: @post.blog_id %>
-          <%= f.hidden_field :user_id, value: @current_user.id %>
-          <p>
-            <%= f.text_area :body %>
-            <p class="errors"></p>
-          </p>
-          <div class="actions">
-          <%= f.submit "Comment" %>
-        </div>
-        <% end %>
-        <hr>
-      </section>
 
-      <%= link_to 'Back', @post.blog, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Edit', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4" if @post.user_id == @current_user.id %>
-      <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @post.user_id == @current_user.id%>
+            <%= link_to 'Back', @post.blog, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
+            <%= link_to 'Edit', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @post.user_id == @current_user.id %>
+            <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @post.user_id == @current_user.id%>
+            <br /><br />
 
-      <p>
-      <%= @post.inspect if Rails.env.development? %>
-      </p>
+            <br />
+            <ul>
+              <% @post.comments.each do |comment| %>
+                <% if comment.user == @current_user || @post.user == @current_user || @current_user.is_friends(@post.user) && comment.user == @post.user %>
+                  <li class="comments side-margin-left side-margin-right little-margin-bottom">
+                    <strong><%= comment.user.full_name %> said:</strong>
+                    <%if @current_user == comment.user %>
+                      <%= link_to "#{comment.body}", comment %>
+                    <% else %>
+                      <%= comment.body %>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+
+        <p>
+        <%= @post.inspect if Rails.env.development? %>
+        </p>
+      </div>
     </div>
   </div>
+  <br />
 </div>

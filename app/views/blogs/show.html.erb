@@ -1,4 +1,4 @@
-<div class="aboutbg">
+
   <br /><br />
   <div class='container'>
     <div class='row'>
@@ -16,18 +16,20 @@
         </div>
         <br />
 
-        <% @blog.posts.each do |post| %>
-          <div class="z-depth-1">
-            <ul class="collection">
-              <li class="collection-item">
-                <h4><%= link_to( "#{post.title}", post ) %></h4>
-                <p><%= link_to( "#{truncate(post.body, length: 350)}", post ) %></p>
-                <p><%= link_to( "#{post.created_at}", post ) %></p>
-                <br />
-              </li>
-            </ul>
-          </div>
-          <br />
+        <% unless @blog.posts.empty? %>
+          <% @blog.posts.each do |post| %>
+            <div class="z-depth-1 vert-center">
+              <ul class="collection">
+                <li class="collection-item">
+                  <h4><%= link_to( "#{post.title}", post ) %></h4>
+                  <p><%= link_to( "#{truncate(post.body, length: 350)}", post ) %></p>
+                  <p><%= link_to( "#{post.created_at}", post ) %></p>
+                  <br />
+                </li>
+              </ul>
+            </div>
+            <br />
+          <% end %>
         <% end %>
 
         <div class="card amber lighten-5 center">
@@ -41,5 +43,4 @@
       </div>
     </div>
   </div>
-  <br />
-</div>
+
