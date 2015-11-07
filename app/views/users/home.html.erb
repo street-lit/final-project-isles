@@ -46,7 +46,7 @@
                 <table>
                   <tbody>
                     <% @current_user.blogs.each do |blog| %>
-                      <tr>
+
                         <td><%= link_to( "#{blog.title}", blog ) %></td>
                         <td><%= link_to( "#{blog.description}", blog ) %></td>
                         <td><%= link_to "#{blog.posts.count}", blog %></td>
@@ -61,17 +61,11 @@
             <div class="card">
               <% unless @current_user.albums.empty? %>
               <h5 class="center-text">Photos</h5>
-              <table>
-                <tbody>
-                  <% @current_user.albums.each do |album| %>
-                    <tr>
-                      <td><%= link_to "#{album.title}", album %></td>
-                      <td><%= link_to "#{album.description}", album%></td>
-                      <td><%= link_to "#{album.photos.count}", album %></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
+                <% @current_user.albums.each do |album| %>
+                    <h5 class="pacifico-font"><%= link_to "#{album.title}", album %></h5>
+                    <p><%= link_to "#{album.description}", album%></p>
+                    <p><%= link_to "#{album.photos.count}", album %></p>
+                <% end %>
               <% end %>
             </div>
           </div>

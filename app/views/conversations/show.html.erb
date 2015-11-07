@@ -1,25 +1,31 @@
-<div class='container'>
-  <div class='row'>
-    <div class='m12'>
-      <h3 class="center"><%= @conversation.title %></h3>
+<div class="aboutbg">
+  <br />
+  <div class='container'>
+    <div class='row'>
+      <div class='m12'>
+        <h3 class="grey-text text-lighten-5 blogs center"><%= @conversation.title %></h3>
 
-      <div class="#ffffff white scroll card z-depth-3">
-        <table>
+        <div class="#ffffff white scroll card z-depth-3">
+          <table>
 
-          <tbody>
-            <% @conversation.messages.each do |message| %>
-              <tr>
-                <td><%= message.user.first_name %> said: </td>
-                <td><%= message.body %></td>
-                <td><%= message.created_at %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            <tbody>
+              <% @conversation.messages.each do |message| %>
+                <tr>
+                  <td><%= message.user.first_name %> said: </td>
+                  <td><%= message.body %></td>
+                  <td><%= message.created_at %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="card search amber lighten-5">
+          <%= render 'new_message_form' %>
+
+          <%= link_to 'Back', conversations_path, class: "waves-effect waves-light btn light-green accent-4"  %>
+        </div>
       </div>
-      <%= render 'new_message_form' %>
-
-      <%= link_to 'Back', conversations_path, class: "waves-effect waves-light btn light-green accent-4"  %>
     </div>
   </div>
+  <br />
 </div>

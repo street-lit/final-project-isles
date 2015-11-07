@@ -38,8 +38,9 @@
       <% end %>
       <% @friends.each do |friend| %>
         <% if friend.events.empty? %>
-          <h3>You don't have any events with <%= "#{friend.friend_not_user(@current_user)}"%></h3>
+          <h3>You don't have any events with <%= "#{friend.friend_not_user(@current_user)}"%> yet...</h3>
           <p><%= link_to "Create New Event", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
+          <br />
           <% end %>
         <% end %>
       <br>

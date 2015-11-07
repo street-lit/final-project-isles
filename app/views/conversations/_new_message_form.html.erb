@@ -1,8 +1,7 @@
 <%= form_for(@new_message) do |f| %>
 
   <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_field :body %>
+    <%= f.text_field :body, placeholder: "Say Something!" %>
   </div>
   <div class="field">
     <%= f.hidden_field :friend_id, value: @conversation.friend_id %>

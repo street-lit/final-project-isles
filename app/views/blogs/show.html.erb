@@ -1,52 +1,45 @@
-<div class='container'>
-  <div class='row'>
-    <div class='m12'>
+<div class="aboutbg">
+  <br /><br />
+  <div class='container'>
+    <div class='row'>
+      <div class='m12'>
+        <div class="card amber lighten-5">
+          <h1 class="center "><%= @blog.title %></h1>
+          <h5 class="center decent-margin-top pacifico-font">
+            <%= @blog.description %>
+          </h5>
 
-        <p>
-          <strong>Blog:</strong>
-          <%= @blog.title %>
-        </p>
+          <p class="center pacifico-font">
+            <%= link_to "#{@blog.user.full_name}", @blog.user unless @blog.user == @current_user%>
+          </p>
+          <br />
+        </div>
+        <br />
 
-        <p>
-          <strong>By:</strong>
-          <%= @blog.user.full_name %>
-        </p>
+        <% @blog.posts.each do |post| %>
+          <div class="z-depth-1">
+            <ul class="collection">
+              <li class="collection-item">
+                <h4><%= link_to( "#{post.title}", post ) %></h4>
+                <p><%= link_to( "#{truncate(post.body, length: 350)}", post ) %></p>
+                <p><%= link_to( "#{post.created_at}", post ) %></p>
+                <br />
+              </li>
+            </ul>
+          </div>
+          <br />
+        <% end %>
 
-        <p>
-          <strong>Description:</strong>
-          <%= @blog.description %>
-        </p>
-
-        <h4>Posts for <%= @blog.title %></h4>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Body</th>
-              <th>Comments</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @blog.posts.each do |post| %>
-              <tr>
-                <td><%= link_to( "#{post.title}", post ) %></td>
-                <td><%= link_to( "#{post.body}", post ) %></td>
-                <td><%= link_to( "#{post.comments.count}", post )%></td>
-                <td><%= link_to( "#{post.created_at}", post ) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-
-
-      <%= link_to 'Back', blogs_path, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4" if @blog.user_id == @current_user.id %>
-      <%= link_to 'Edit Blog', edit_blog_path(@blog.id), class: "waves-effect waves-light btn light-green accent-4" if @blog.user_id == @current_user.id %>
-      <%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @blog.user_id == @current_user.id %>
+        <div class="card amber lighten-5 center">
+          <br />
+          <%= link_to 'Back', blogs_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" %>
+          <%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>
+          <%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right little-margin-top" if @blog.user_id == @current_user.id %>
+          <%= link_to 'Edit Blog', edit_blog_path(@blog.id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>
+          <br /><br /><br />
+        </div>
+      </div>
     </div>
   </div>
+  <br />
 </div>

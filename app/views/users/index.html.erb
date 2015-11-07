@@ -1,52 +1,56 @@
-<div class='container'>
-  <div class='row'>
-    <div class='m12'>
+<div class="aboutbg">
+  <br />
+  <div class='container'>
+    <div class='row'>
+      <div class='m12'>
+        <br /><br /><br /><br /><br />
+        <h1 class="grey-text text-lighten-5 blogs center">Search Users</h1>
+        <div class="card search">
+          <%= form_tag users_path, :method => 'get' do %>
+            <p>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+            <%= submit_tag "Search", :name => nil, class: "btn light-green accent-4" %>
+            </p>
+          <% end %>
 
-      <h1>Search Users</h1>
+          <% unless @users.empty? || @users.first == @current_user %>
+            <table>
+              <thead>
+                <tr>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Age</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
 
-      <%= form_tag users_path, :method => 'get' do %>
-        <p>
-        <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
-        <%= submit_tag "Search", :name => nil, class: "btn light-green accent-4" %>
-        </p>
-      <% end %>
-
-      <% unless @users.empty? || @users.first == @current_user %>
-        <table>
-          <thead>
-            <tr>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Email</th>
-              <th>Username</th>
-              <th>Age</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <% unless user == @current_user%>
-                  <td><%= link_to "#{user.first_name}", user %></td>
-                  <td><%= link_to "#{user.last_name}", user %></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.username %></td>
-                  <td><%= user.age unless user.age.nil? || user.age.blank? %></td>
-                  <td><%= user.city unless user.city.nil? || user.city.empty?%></td>
-                  <td><%= user.state unless user.state.nil? || user.state.empty?%></td>
-                  <td><%= link_to( "Add Friend", requests_path(:requested_friend_id => user), :method => :post, class: "waves-effect waves-light btn light-green accent-4") if
-              @current_user.requests.where(:requested_friend_id => user.id).where(:user_id => @current_user.id).empty? && !user.requests.where(requested_friend_id: @current_user.id).exists? %></td>
+              <tbody>
+                <% @users.each do |user| %>
+                  <tr>
+                    <% unless user == @current_user%>
+                      <td><%= link_to "#{user.first_name}", user %></td>
+                      <td><%= link_to "#{user.last_name}", user %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.username %></td>
+                      <td><%= user.age unless user.age.nil? || user.age.blank? %></td>
+                      <td><%= user.city unless user.city.nil? || user.city.empty?%></td>
+                      <td><%= user.state unless user.state.nil? || user.state.empty?%></td>
+                      <td><%= link_to( "Add Friend", requests_path(:requested_friend_id => user), :method => :post, class: "waves-effect waves-light btn light-green accent-4") if
+                  @current_user.requests.where(:requested_friend_id => user.id).where(:user_id => @current_user.id).empty? && !user.requests.where(requested_friend_id: @current_user.id).exists? %></td>
+                    <% end %>
+                  </tr>
                 <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
-      <br>
-
+              </tbody>
+            </table>
+          <% end %>
+          <br>
+        </div>
+      </div>
     </div>
   </div>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>
