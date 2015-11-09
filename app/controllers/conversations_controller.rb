@@ -13,6 +13,10 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.find(params[:id])
     authorize @conversation
+    respond_to do |format|
+      format.html { }
+      format.json {render json: @conversation.messages.to_json(:include => :user) }
+    end
   end
 
   # POST /conversations
