@@ -1,33 +1,23 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <p>
-        <strong>Occasion:</strong>
-        <%= @event.occasion %>
-      </p>
+      <h1 class="center grey-text text-lighten-5 blogs"><%= @event.occasion %></h1>
+      <h3 class="center grey-text text-lighten-5 blogs">happened on <%= @event.dateof %>, with <%= @event.friend.other_user(@current_user).full_name %></h3>
+      <hr class="grey-text text-lighten-5">
+      <br />
 
-      <p>
-        <strong>Description:</strong>
-        <%= @event.description %>
-      </p>
+      <div class="card amber lighten-5 big-padding">
+        <p>
+          <%= @event.description %>
+        </p>
+      </div>
 
-      <p>
-        <strong>Dateof:</strong>
-        <%= @event.dateof %>
-      </p>
-
-      <p>
-        <strong>Milestone:</strong>
-        <%= @event.milestone %>
-      </p>
-
-      <p>
-        <strong>Friend:</strong>
-        <%= @event.friend %>
-      </p>
-
-      <%= link_to 'Edit', edit_event_path(@event), class: "waves-effect waves-light btn light-green accent-4"  %>
-      <%= link_to 'Back', events_path, class: "waves-effect waves-light btn light-green accent-4"  %>
+      <div class="card amber lighten-5 center">
+        <br />
+        <%= link_to 'Back', events_path, class: "waves-effect waves-light btn light-green accent-4"  %>
+        <%= link_to 'Edit', edit_event_path(@event), class: "waves-effect waves-light btn light-green accent-4 side-margin-left"  %>
+        <br /><br />
+      </div>
     </div>
   </div>
 </div>
