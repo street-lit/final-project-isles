@@ -1,19 +1,30 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
       <h1 class="grey-text text-lighten-5 blogs center">Blogs</h1>
       <hr class="grey-text text-lighten-5">
       <br />
+      <% if @current_user.blogs.empty? %>
+        <div class="card amber lighten-5 center">
+          <h4>You appear to not have a blog or made any posts yet...</h4>
+          <%= link_to 'New Blog', new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %>
+          <br /><br />
+        </div>
+        <br />
+      <% end %>
+
       <% unless @current_user.blogs.empty? %>
         <% @current_user.blogs.each do |blog| %>
           <%= link_to blog do %>
             <div>
               <ul class="collection">
                 <li class="collection-item avatar">
-                  <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
-                  <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
-                  <p><%= blog.description %></p>
-                  <p class="pacifico-font"><%= blog.user.full_name %></p>
+                  <%= image_tag blog.user.image.url(:thumb), class: "circle" %>
+                  <h2 class="pacifico-font bigger little-margin album center"><%= blog.title %></h2>
+                  <div class="album">
+                    <p class="center"><%= blog.description %></p>
+                    <p class="pacifico-font center"><%= blog.user.full_name %></p>
+                  </div>
                   <i class="material-icons secondary-content">format_align_left</i>
                 </li>
               </ul>
@@ -28,9 +39,11 @@
             <ul class="collection">
               <li class="collection-item avatar">
                 <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
-                <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
-                <p><%= blog.description %></p>
-                <p class="pacifico-font"><%= blog.user.full_name %></p>
+                <h2 class="pacifico-font bigger little-margin center album"><%= blog.title %></h2>
+                <div class="album">
+                  <p class="center"><%= blog.description %></p>
+                  <p class="pacifico-font center"><%= blog.user.full_name %></p>
+                </div>
                 <i class="material-icons secondary-content">format_align_left</i>
               </li>
             </ul>
@@ -39,15 +52,7 @@
         <% end %>
       <% end %>
 
-      <br />
-      <% if @current_user.blogs.empty? %>
-        <div class="card amber lighten-5 center">
-          <h4>You appear to not have a blog or made any posts yet...</h4>
-          <br />
-            <%= link_to 'New Blog', new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %>
-          <br /><br />
-        </div>
-      <% else %>
+      <% unless @current_user.blogs.empty? %>
         <div class="card amber lighten-5 center">
           <br />
             <%= link_to 'New Blog', new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %>

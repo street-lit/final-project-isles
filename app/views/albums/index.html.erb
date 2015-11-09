@@ -5,10 +5,12 @@
       <hr class="grey-text text-lighten-5">
       <br />
       <% if @current_user.albums.empty? %>
-        <div class="card decent-padding amber lighten-5">
-          <h4 class="big-margin-bottom little-margin-top">You appear to not have an album or uploaded any photos yet...</h4>
+        <div class="card amber lighten-5 center">
+          <h4>You appear to not have an album or uploaded any photos yet...</h4>
           <p><%= link_to 'New Album', new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+          <br />
         </div>
+        <br />
       <% end %>
 
       <% unless @current_user.albums.empty? %>

@@ -7,15 +7,15 @@
       <% @friends.each do |friend| %>
         <% unless friend.events.empty? %>
           <div class="card amber lighten-5 decent-padding">
-            <h4 class="little-margin-top"><%= friend.friend_not_user(@current_user) %></h4>
+            <h3 class="little-margin-top"><%= friend.friend_not_user(@current_user) %></h3>
           </div>
 
           <% friend.events.each do |event| %>
             <div class="card decent-padding">
+              <h4><%= event.dateof.strftime("%B %e, %Y") %></h4>
               <h5><%= event.occasion %></h5>
-              <p><%= event.description %></p>
-              <p><%= event.dateof %></p>
-                <%= link_to "Create Another Event", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4 left little-margin-top" %>
+              <p class="decent-margin-bottom"><%= event.description %></p>
+              <p><%= link_to "Create Another Event", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4 left little-margin-top" %>
                 <%= link_to 'Show', event, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" %>
                 <%= link_to 'Edit', edit_event_path(event, :friend_id => event.friend_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" %>
                 <%= link_to 'Delete Event', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 right little-margin-top" %>
@@ -28,7 +28,7 @@
       <% end %>
       <% @friends.each do |friend| %>
         <% if friend.events.empty? %>
-          <div class="card amber lighten-5 decent-padding">
+          <div class="card amber lighten-5 decent-padding center">
             <h4 class="little-margin-top">You don't have any events with <%= "#{friend.friend_not_user(@current_user)}"%> yet...</h4>
             <p><%= link_to "Create An Event!", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
           </div>

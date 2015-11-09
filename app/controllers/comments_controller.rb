@@ -19,15 +19,18 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-    authorize @comment
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to :back, notice: 'Comment was created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { redirect_to :back, notice: "Comment was not created because #{@comment.errors.full_messages.each { |message| message  } }"  }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    if @comment.save
+      respond_to do |f|
+        f.html do |f|
+          redirect_to :back
+        end
+        f.json do
+          render json: @comment.to_json(:include => :user)
+        end
       end
+    else
+      flash[:alert] = 'Errors'
+      render :back
     end
   end
 

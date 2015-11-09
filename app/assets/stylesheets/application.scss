@@ -30,6 +30,10 @@ a, p {
   font-family: 'Pacifico', cursive;
 }
 
+h2, h3, h4 {
+  line-height: 1.5em;
+}
+
 //Class and specific element styling
 
 h2.album {
@@ -38,6 +42,10 @@ h2.album {
 
 div.album {
   padding-right: 46px;
+}
+
+.arimo-font {
+  font-family: 'Arimo', sans-serif;
 }
 
 .author {
@@ -99,6 +107,10 @@ body {
 .dark {
   background: rgba(0, 0, 0, 0.2);
   outline: 1px black;
+}
+
+.decent-line-height {
+  line-height: 1.5em;
 }
 
 .decent-margin {

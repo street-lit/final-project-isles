@@ -2,7 +2,7 @@
   <br /><br />
   <div class='container'>
     <div class='row'>
-      <div class='m12'>
+      <div class='m12 m4 l4'>
         <div class="card amber lighten-5">
           <h1 class="center "><%= @blog.title %></h1>
           <h5 class="center decent-margin-top pacifico-font">
@@ -22,8 +22,8 @@
               <ul class="collection">
                 <li class="collection-item">
                   <h4><%= link_to( "#{post.title}", post ) %></h4>
+                  <p><%= link_to( "#{post.created_at.strftime("%B %e, %Y")}", post ) %></p><br/>
                   <p><%= link_to( "#{truncate(post.body, length: 350)}", post ) %></p>
-                  <p><%= link_to( "#{post.created_at}", post ) %></p>
                   <br />
                 </li>
               </ul>

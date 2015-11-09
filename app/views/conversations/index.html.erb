@@ -6,9 +6,10 @@
       <br />
       <% @conversations.each do |conversation| %>
         <% if @current_user.id == conversation.friend.friend_requester_id || @current_user.id == conversation.friend.friend_accepter_id %>
-          <div class="card amber lighten-5 decent-padding">
-          <h5 class="side-margin-left pacifico-font"><%= conversation.title %></h5>
-          <p><%= link_to 'Conversation', conversation, class: "waves-effect waves-light btn light-green accent-4 left side-margin-left decent-margin-bottom little-margin-top" %><p>
+          <div class="card amber lighten-5 center">
+            <h4 class="pacifico-font"><%= conversation.title %></h4>
+            <p><%= link_to 'Conversation', conversation, class: "waves-effect waves-light btn light-green accent-4" %><p>
+            <br />
           </div>
           <br />
         <% end %>

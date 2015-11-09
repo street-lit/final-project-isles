@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='m12'>
       <h1 class="center grey-text text-lighten-5 blogs"><%= @event.occasion %></h1>
-      <h3 class="center grey-text text-lighten-5 blogs">happened on <%= @event.dateof %>, with <%= @event.friend.other_user(@current_user).full_name %></h3>
+      <h3 class="center grey-text text-lighten-5 blogs">happened on <%= @event.dateof.strftime("%B %e, %Y") %>, with <%= @event.friend.other_user(@current_user).full_name %></h3>
       <hr class="grey-text text-lighten-5">
       <br />
 

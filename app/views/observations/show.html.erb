@@ -1,16 +1,26 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-
-      <div>
-        <h5>
-          On the album, "<%= "#{@observation.album.title}" %>"<strong> <%= @observation.user.full_name %></strong> said: "<%="#{ @observation.body }"%>" on the photo, "<%= "#{@observation.photo.description}" unless @observation.photo.description.nil? %>" by <%= "#{@observation.album.user.full_name}"%>
-        </h5>
+      <h3 class="center grey-text text-lighten-5 blogs">Your comment</h3>
+      <div class="card">
+        <div>
+          <h5 class="decent-padding">
+            In the album, "<%= "#{@observation.album.title}" %>", <strong> <%= @observation.user.full_name %></strong> said, "<%="#{ @observation.body }"%>"
+            <% unless @observation.photo.description.empty? || @observation.photo.description.nil? %>
+              on the photo, "<%= "#{@observation.photo.description}" %>"
+            <% end %>
+            by <%= "#{@observation.album.user.full_name}"%>
+          </h5>
+        </div>
       </div>
 
-      <%= link_to 'Edit', edit_observation_path(:user_id => @observation.user, :album_id => @observation.album, :photo_id => @observation.photo), class: "waves-effect waves-light btn light-green accent-4" if @observation.user_id == @current_user.id %>
-      <%= link_to 'Back', @observation.photo, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Delete observation', @observation, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @observation.user_id == @current_user.id %>
+      <div class="card amber lighten-5 center">
+        <br />
+        <%= link_to 'Edit', edit_observation_path(:user_id => @observation.user, :album_id => @observation.album, :photo_id => @observation.photo), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @observation.user_id == @current_user.id %>
+        <%= link_to 'Back', @observation.photo, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
+        <%= link_to 'Delete observation', @observation, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @observation.user_id == @current_user.id %>
+        <br /><br /><br />
+      </div>
     </div>
   </div>
 </div>

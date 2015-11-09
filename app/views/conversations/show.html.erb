@@ -4,12 +4,12 @@
       <br />
       <h3 class="grey-text text-lighten-5 blogs center"><%= @conversation.title %></h3>
 
-      <div class="#ffffff white scroll card z-depth-3">
+      <div id="message-container" class="white scroll card z-depth-3">
         <table>
           <tbody>
             <% @conversation.messages.each do |message| %>
               <tr>
-                <td class=""><%= message.user.first_name %> said: </td>
+                <td class=<%= 'blue-text' if message.user != @current_user %>><%= message.user.first_name %> said: </td>
                 <td class="side-margin-left"><%= message.body %></td>
               </tr>
             <% end %>

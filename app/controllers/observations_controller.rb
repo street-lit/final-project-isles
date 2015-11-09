@@ -19,15 +19,18 @@ class ObservationsController < ApplicationController
   # POST /observations.json
   def create
     @observation = Observation.new(observation_params)
-    authorize @observation
-    respond_to do |format|
-      if @observation.save
-        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @observation }
-      else
-        format.html { redirect_to :back, notice: "Comment was not created because #{@observation.errors.full_messages.each { |message| message  } }"  }
-        format.json { render json: @observation.errors, status: :unprocessable_entity }
+    if @observation.save
+      respond_to do |f|
+        f.html do |f|
+          redirect_to :back
+        end
+        f.json do
+          render json: @observation.to_json(:include => :user)
+        end
       end
+    else
+      flash[:alert] = 'Errors'
+      render :back
     end
   end
 

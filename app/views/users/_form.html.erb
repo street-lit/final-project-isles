@@ -62,7 +62,7 @@
   </div>
   <div class="field">
     <%= f.label :birthday %><br>
-    <%= f.datetime_select :birthday %>
+    <%= f.text_field :birthday, class: "datepicker", value: @user.birthday.strftime("%B %e, %Y") %>
   </div>
   <div class="field">
     <%= f.label :soundcloud %><br>

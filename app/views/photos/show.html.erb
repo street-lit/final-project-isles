@@ -27,9 +27,9 @@
       <% end %>
       <br />
 
-      <div class="card big-padding">
-        <section class="observations">
-          <h3> Comments <%= "(#{@photo.observations.count})" if @photo.user == @current_user %></h3>
+      <div class="card">
+        <section class="observations side-margin-left side-margin-right">
+          <h3>Comments <%= "(#{@photo.observations.count})" if @photo.user == @current_user %></h3>
           <%= form_for(@observation) do |f| %>
             <%= f.hidden_field :photo_id, value: @photo.id %>
             <%= f.hidden_field :album_id, value: @photo.album_id %>
@@ -38,24 +38,21 @@
               <%= f.text_area :body %>
               <p class="errors"></p>
             </p>
-            <div class="actions">
-              <%= f.submit "Comment", class: "btn light-green accent-4" %>
-              <br /><br />
-            </div>
+            <div class="waves-effect waves-light btn light-green accent-4" id="newObservation">Create Comment</div>
+            <br/><br/>
           <% end %>
         </section>
 
 
-        <%= link_to "Back", @photo.album, class: "waves-effect waves-light btn light-green accent-4 left" %>
+        <%= link_to "Back", @photo.album, class: "waves-effect waves-light btn light-green accent-4 left side-margin-left" %>
         <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @photo.user_id == @current_user.id %>
         <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @photo.user_id == @current_user.id %>
         <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @photo.user_id == @current_user.id %>
-        <br /><br />
-        <br />
-        <ul>
+        <br /><br /><br />
+        <ul class="list-observations">
           <% @photo.observations.each do |observation| %>
             <% if observation.user == @current_user || @photo.user == @current_user || @current_user.is_friends(@photo.user) && observation.user == @photo.user %>
-              <li class="comments side-margin-right little-margin-bottom">
+              <li class="comments side-margin-left side-margin-right little-margin-bottom">
                 <strong><%= observation.user.full_name %> said:</strong>
                 <%if @current_user == observation.user %>
                   <%= link_to "#{observation.body}", observation %>

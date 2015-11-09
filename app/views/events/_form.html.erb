@@ -22,7 +22,7 @@
     </div>
     <div class="field">
       <%= f.label :dateof %><br>
-      <%= f.text_field :dateof, class: "datepicker"%>
+      <%= f.text_field :dateof, class: "datepicker", value: @event.dateof.strftime("%B %e, %Y") %>
     </div>
     <br />
     <div class="field">
