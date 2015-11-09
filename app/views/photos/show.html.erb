@@ -2,12 +2,6 @@
   <div class='row'>
     <div class='m12'>
     <br /><br />
-      <% unless @photo.location.empty? %>
-        <p>
-          <strong>Location:</strong>
-          <%= @photo.location %>
-        </p>
-      <% end %>
 
       <div class="card amber lighten-5 decent-padding margin-show-photo">
         <div class="center">
@@ -15,12 +9,20 @@
         </div>
       </div>
 
-      <% unless @photo.description.empty? %>
+      <% unless @photo.description.empty? && @photo.location.empty? %>
         <div class="card decent-padding amber lighten-5">
-          <p>
-            <strong>Description:</strong>
-            <%= @photo.description %>
-          </p>
+          <% unless @photo.description.empty? %>
+              <p>
+                <strong>Description:</strong>
+                <%= @photo.description %>
+              </p>
+          <% end %>
+          <% unless @photo.location.empty? %>
+            <p>
+              <strong>Location:</strong>
+              <%= @photo.location %>
+            </p>
+          <% end %>
         </div>
       <% end %>
       <br />
