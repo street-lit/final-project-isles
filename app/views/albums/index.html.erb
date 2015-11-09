@@ -1,47 +1,63 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <h1>Albums</h1>
+      <h1 class="grey-text text-lighten-5 blogs center">Albums</h1>
+      <hr class="grey-text text-lighten-5">
+      <br />
+      <% if @current_user.albums.empty? %>
+        <div class="card decent-padding amber lighten-5">
+          <h4 class="big-margin-bottom little-margin-top">You appear to not have an album or uploaded any photos yet...</h4>
+          <p><%= link_to 'New Album', new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+        </div>
+      <% end %>
 
-        <% if @current_user.albums.empty? %>
-          <div>
-            <h4>You appear to not have an album or uploaded any photos yet</h4>
-          </div>
-        <% end %>
-
-        <% if !@current_user.albums.empty? || !@current_user.users_friends_albums.empty? %>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>User</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-        <% end %>
-          <tbody>
-          <% unless @current_user.albums.empty? %>
-            <% @current_user.albums.each do |album| %>
-              <tr>
-                <td><%= link_to( "#{album.title}", album ) %></td>
-                <td><%= link_to( "#{album.user.full_name}", album.user ) %></td>
-                <td><%= link_to( "#{album.description}", album ) %></td>
-              </tr>
-            <% end %>
+      <% unless @current_user.albums.empty? %>
+        <% @current_user.albums.each do |album| %>
+          <%= link_to album do %>
+            <div>
+              <ul class="collection">
+                <li class="collection-item avatar">
+                  <%= image_tag album.user.image.url(:thumb), class: "circle"%>
+                  <h2 class="pacifico-font bigger little-margin center album"><%= album.title %></h2>
+                  <div class="album">
+                    <p class="center"><%= album.description %></p>
+                  </div>
+                  <i class="material-icons secondary-content">format_align_left</i>
+                </li>
+              </ul>
+            </div>
+            <br />
           <% end %>
-            <% @current_user.users_friends_albums.each do |album| %>
-              <tr>
-                <td><%= link_to( "#{album.title}", album ) %></td>
-                <td><%= link_to( "#{album.user.full_name}", album.user ) %></td>
-                <td><%= link_to( "#{album.description}", album ) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <% end %>
+      <% end %>
+
+      <% @current_user.users_friends_albums.each do |album| %>
+        <%= link_to album do %>
+          <div>
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <%= image_tag album.user.image.url(:thumb), class: "circle"%>
+                <h2 class="pacifico-font bigger little-margin center album"><%= album.title %></h2>
+                <div class="album">
+                  <p class="center"><%= album.description %></p>
+                </div>
+                <i class="material-icons secondary-content side-margin-left">format_align_left</i>
+              </li>
+            </ul>
+          </div>
+          <br />
+        <% end %>
+      <% end %>
 
       <br>
 
-      <%= link_to 'New Album', new_album_path, class: "waves-effect waves-light btn light-green accent-4" %>
+      <% unless @current_user.albums.empty? %>
+        <div class="card amber lighten-5 center">
+          <br />
+            <%= link_to 'New Album', new_album_path, class: "waves-effect waves-light btn light-green accent-4" %>
+          <br /><br />
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

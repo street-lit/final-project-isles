@@ -24,15 +24,15 @@
                   <p class="errors"></p>
                 </p>
                 <div class="actions">
-                <%= f.submit "Comment", class: "btn light-green accent-4" %>
-                <br /><br />
-              </div>
+                  <%= f.submit "Comment", class: "btn light-green accent-4" %>
+                  <br /><br />
+                </div>
               <% end %>
             </section>
 
 
             <%= link_to 'Back', @post.blog, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
-            <%= link_to 'Edit', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @post.user_id == @current_user.id %>
+            <%= link_to 'Edit Post', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @post.user_id == @current_user.id %>
             <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @post.user_id == @current_user.id%>
             <br /><br />
 
@@ -51,6 +51,7 @@
                 <% end %>
               <% end %>
             </ul>
+            <br /><br />
           </div>
 
         <p>

@@ -2,43 +2,42 @@
   <div class='row'>
     <div class='m12'>
       <h1 class="grey-text text-lighten-5 blogs center">Blogs</h1>
+      <hr class="grey-text text-lighten-5">
       <br />
-
-
-            <% unless @current_user.blogs.empty? %>
-              <% @current_user.blogs.each do |blog| %>
-                <%= link_to blog do %>
-                  <div>
-                    <ul class="collection">
-                      <li class="collection-item avatar">
-                        <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
-                        <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
-                        <p><%= blog.description %></p>
-                        <p class="pacifico-font"><%= blog.user.full_name %></p>
-                        <i class="material-icons secondary-content">format_align_left</i>
-                      </li>
-                    </ul>
-                  </div>
-                  <br />
-                <% end %>
-              <% end %>
-            <% end %>
-            <% @current_user.users_friends_blogs.each do |blog| %>
-              <%= link_to blog do %>
-                <div>
-                  <ul class="collection">
-                    <li class="collection-item avatar">
-                      <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
-                      <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
-                      <p><%= blog.description %></p>
-                      <p class="pacifico-font"><%= blog.user.full_name %></p>
-                      <i class="material-icons secondary-content">format_align_left</i>
-                    </li>
-                  </ul>
-                </div>
-                <br />
-              <% end %>
-            <% end %>
+      <% unless @current_user.blogs.empty? %>
+        <% @current_user.blogs.each do |blog| %>
+          <%= link_to blog do %>
+            <div>
+              <ul class="collection">
+                <li class="collection-item avatar">
+                  <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
+                  <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
+                  <p><%= blog.description %></p>
+                  <p class="pacifico-font"><%= blog.user.full_name %></p>
+                  <i class="material-icons secondary-content">format_align_left</i>
+                </li>
+              </ul>
+            </div>
+            <br />
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @current_user.users_friends_blogs.each do |blog| %>
+        <%= link_to blog do %>
+          <div>
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <%= image_tag blog.user.image.url(:thumb), class: "circle"%>
+                <h2 class="pacifico-font bigger little-margin"><%= blog.title %></h2>
+                <p><%= blog.description %></p>
+                <p class="pacifico-font"><%= blog.user.full_name %></p>
+                <i class="material-icons secondary-content">format_align_left</i>
+              </li>
+            </ul>
+          </div>
+          <br />
+        <% end %>
+      <% end %>
 
       <br />
       <% if @current_user.blogs.empty? %>

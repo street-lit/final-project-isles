@@ -1,11 +1,15 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <h1>New Album</h1>
+      <h1 class="grey-text text-lighten-5 blogs">New Album</h1>
 
       <%= render 'form' %>
 
-      <%= link_to 'Back', albums_path, class: "waves-effect waves-light btn light-green accent-4" %>
+      <div class="card amber lighten-5 center">
+        <br />
+        <%= link_to 'Back', albums_path, class: "waves-effect waves-light btn light-green accent-4" %>
+        <br /><br />
+      </div>
     </div>
   </div>
 </div>

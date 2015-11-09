@@ -4,16 +4,41 @@ class MessagesController < ApplicationController
 
   # POST /messages
   # POST /messages.json
+  # def create
+  #   @message = Message.new(message_params)
+  #   authorize @message
+  #   respond_to do |format|
+  #     if @message.save
+  #       format.html { redirect_to :back }
+  #       format.json { render :show, status: :created, location: @message }
+  #     else
+  #       format.html { render :new }
+  #       format.json { render json: @message.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def create
     @message = Message.new(message_params)
-    authorize @message
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to :back }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
+    @message.user = current_user
+    if @message.save
+      respond_to do |f|
+        f.html do
+          redirect_to :back
+        end
+        f.json do
+          render json: @message.to_json(:include => :user)
+        end
+      end
+    else
+      respond_to do |f|
+        f.html do
+          flash[:alert] = 'Errors'
+      render :back
+        end
+        f.json do
+          render json: @message
+        end
       end
     end
   end

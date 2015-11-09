@@ -1,19 +1,13 @@
-<%= form_for(@new_message) do |f| %>
+<section class="conversations">
 
-  <div class="field">
-    <%= f.text_field :body, placeholder: "Say Something!" %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :friend_id, value: @conversation.friend_id %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :user_id, value: @current_user.id %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :conversation_id, value: @conversation.id %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Send Message", class: "btn light-green accent-4" %>
-  </div>
-  <br />
-<% end %>
+  <%= hidden_field_tag "message_friend_id",  @conversation.friend_id %>
+  <%= hidden_field_tag "message_user_id",  @current_user.id %>
+  <%= hidden_field_tag "message_conversation_id",  @conversation.id %>
+
+  <p>
+    <%= text_field_tag "message_body" %>
+  </p>
+  <div class="btn light-green accent-4" id="newMessage">send message</div>
+  <br /><br />
+
+</section>

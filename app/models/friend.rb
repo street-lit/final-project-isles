@@ -38,4 +38,14 @@ class Friend < ActiveRecord::Base
       friend1
     end
   end
+
+  def is_user(current_user)
+    friend1 = self.friend_requester
+    friend2 = self.friend_accepter
+    if friend1 != current_user
+      friend2
+    else
+      friend1
+    end
+  end
 end

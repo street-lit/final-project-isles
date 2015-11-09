@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     authorize @comment
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
+        format.html { redirect_to :back, notice: 'Comment was created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_to :back, notice: "Comment was not created because #{@comment.errors.full_messages.each { |message| message  } }"  }
@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment.post, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment.post, notice: 'Comment was updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { redirect_to :back, notice: "Comment was not updated because #{@comment.errors.full_messages.each { |message| message  } }"  }
@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
     post = @comment.post
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to post, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to post, notice: 'Comment was deleted.' }
       format.json { head :no_content }
     end
   end

@@ -1,57 +1,31 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <p>
-        <strong>Title:</strong>
-        <%= @album.title %>
-      </p>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @album.description %>
-      </p>
+      <h1 class="grey-text text-lighten-5 blogs center"><%= @album.title %></h1>
+      <hr class="grey-text text-lighten-5">
+      <h4 class="grey-text text-lighten-5 blogs center"><%= @album.description %></h4>
 
-      <% unless @current_user == @album.user %>
-        <p>
-          <strong>User:</strong>
-          <%= @album.user.full_name %>
-        </p>
+      <%= link_to @album, class: "center" do %>
+        <div class="card row big-padding-left">
+          <% @album.photos.each do |photo| %>
+            <%= link_to photo do %>
+              <div class="col s2 big-margin"><%= image_tag photo.image.url(:thumb), class: "circle"%>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <br />
       <% end %>
 
-      <h4>Photos</h4>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Location</th>
-            <th>Photo</th>
-            <th>User</th>
-            <th colspan="3">Date</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @album.photos.each do |photo| %>
-            <tr>
-              <td><%= link_to "#{photo.description}", photo %></td>
-              <td><%= link_to "#{photo.location}", photo unless photo.location.blank? || photo.location.nil? %></td>
-              <td>
-              <%= link_to photo do %>
-                <%= image_tag photo.image.url(:thumb) unless photo.image.url(:thumb) == "/images/thumb/missing.png" %>
-              <% end %>
-              </td>
-              <td><%= link_to "#{photo.user.full_name}", photo.user %></td>
-              <td><%= link_to "#{photo.created_at}", photo %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <%= link_to 'Edit Album', edit_album_path(@album), class: "waves-effect waves-light btn light-green accent-4" if @album.user_id == @current_user.id %>
-      <%= link_to 'Add New Photo', new_photo_path(:album_id => @album, :user_id => @album), class: "waves-effect waves-light btn light-green accent-4" if @album.user_id == @current_user.id %>
-      <%= link_to 'Back to Albums', albums_path, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Delete Album', @album, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @album.user_id == @current_user.id %>
+      <div class="card amber lighten-5 center">
+        <br />
+        <%= link_to 'Back to Albums', albums_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
+        <%= link_to 'Add New Photo', new_photo_path(:album_id => @album.id, :user_id => @album.user_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @album.user_id == @current_user.id %>
+        <%= link_to 'Edit Album', edit_album_path(@album), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @album.user_id == @current_user.id %>
+        <%= link_to 'Delete Album', @album, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @album.user_id == @current_user.id %>
+        <br /><br /><br />
+      </div>
     </div>
   </div>
 </div>

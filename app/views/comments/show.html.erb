@@ -1,16 +1,22 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-
-      <div>
-        <h5>
-          On the post, "<%= "#{@comment.post.title}" %>" in the blog, "<%= "#{@comment.blog.title}" %>" by <%= "#{@comment.blog.user.full_name}"%>, <%= @comment.user.full_name %> said, "<%="#{ @comment.body }"%>"
-        </h5>
+      <h3 class="center grey-text text-lighten-5 blogs">Your comment</h3>
+      <div class="card">
+        <div>
+          <p class="decent-padding">
+            On the post, "<%= "#{@comment.post.title}" %>" in the blog, "<%= "#{@comment.blog.title}" %>" by <%= "#{@comment.blog.user.full_name}"%>, <%= @comment.user.full_name %> replied, "<%="#{ @comment.body }"%>"
+          </p>
+        </div>
       </div>
 
-      <%= link_to 'Edit', edit_comment_path(:user_id => @comment.user, :blog_id => @comment.blog, :post_id => @comment.post), class: "waves-effect waves-light btn light-green accent-4" if @comment.user_id == @current_user.id %>
-      <%= link_to 'Back', @comment.post, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Delete Comment', @comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @comment.user_id == @current_user.id %>
+      <div class="card amber lighten-5 center">
+        <br />
+        <%= link_to 'Edit Comment', edit_comment_path(:user_id => @comment.user, :blog_id => @comment.blog, :post_id => @comment.post), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @comment.user_id == @current_user.id %>
+        <%= link_to 'Back', @comment.post, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
+        <%= link_to 'Delete Comment', @comment, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @comment.user_id == @current_user.id %>
+        <br /><br /><br />
+      </div>
     </div>
   </div>
 </div>

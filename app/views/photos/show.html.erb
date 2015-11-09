@@ -1,71 +1,70 @@
 <div class='container'>
   <div class='row'>
     <div class='m12'>
-      <p>
-        <strong>Album:</strong>
-        <%= link_to "#{@photo.album.title}", @photo.album %>
-      </p>
-
-      <p>
-        <strong>User:</strong>
-        <%= link_to "#{@photo.user.full_name}", @photo.user %>
-      </p>
-
-      <% unless @photo.description.nil? %>
+    <br /><br />
+      <% unless @photo.location.empty? %>
         <p>
           <strong>Location:</strong>
           <%= @photo.location %>
         </p>
       <% end %>
 
-      <%= image_tag @photo.image.url(:medium) %>
-
-      <% unless @photo.description.nil? %>
-        <p>
-          <strong>Description:</strong>
-          <%= @photo.description %>
-        </p>
-      <% end %>
-
-      <ul>
-        <% @photo.observations.each do |observation| %>
-          <% if observation.user == @current_user || @photo.user == @current_user || @current_user.is_friends(@photo.user) && observation.user == @photo.user %>
-            <li>
-              <strong><%= observation.user.full_name %> said:</strong>
-              <%if @current_user == observation.user %>
-                <%= link_to "#{observation.body}", observation %>
-              <% else %>
-                <%= observation.body %>
-              <% end %>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-
-      <section class="observations">
-        <h3> Comments <%= "(#{@photo.observations.count})" if @photo.user == @current_user %></h3>
-        <hr>
-        <%= form_for(@observation) do |f| %>
-          <%= f.hidden_field :photo_id, value: @photo.id %>
-          <%= f.hidden_field :album_id, value: @photo.album_id %>
-          <%= f.hidden_field :user_id, value: @current_user.id %>
-          <p>
-            <%= f.text_area :body %>
-            <p class="errors"></p>
-          </p>
-          <div class="actions">
-          <%= f.submit "Comment" %>
+      <div class="card amber lighten-5 decent-padding margin-show-photo">
+        <div class="center">
+          <%= image_tag @photo.image.url(:large) %>
         </div>
-        <% end %>
-        <hr>
-      </section>
+      </div>
 
-      <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" if @photo.user_id == @current_user.id %>
-      <%= link_to "Back", @photo.album, class: "waves-effect waves-light btn light-green accent-4" %>
-      <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4" if @photo.user_id == @current_user.id %>
-      <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn light-green accent-4" if @photo.user_id == @current_user.id %>
+      <% unless @photo.description.empty? %>
+        <div class="card decent-padding amber lighten-5">
+          <p>
+            <strong>Description:</strong>
+            <%= @photo.description %>
+          </p>
+        </div>
+      <% end %>
+      <br />
+
+      <div class="card big-padding">
+        <section class="observations">
+          <h3> Comments <%= "(#{@photo.observations.count})" if @photo.user == @current_user %></h3>
+          <%= form_for(@observation) do |f| %>
+            <%= f.hidden_field :photo_id, value: @photo.id %>
+            <%= f.hidden_field :album_id, value: @photo.album_id %>
+            <%= f.hidden_field :user_id, value: @current_user.id %>
+            <p>
+              <%= f.text_area :body %>
+              <p class="errors"></p>
+            </p>
+            <div class="actions">
+              <%= f.submit "Comment", class: "btn light-green accent-4" %>
+              <br /><br />
+            </div>
+          <% end %>
+        </section>
 
 
+        <%= link_to "Back", @photo.album, class: "waves-effect waves-light btn light-green accent-4 left" %>
+        <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @photo.user_id == @current_user.id %>
+        <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @photo.user_id == @current_user.id %>
+        <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @photo.user_id == @current_user.id %>
+        <br /><br />
+        <br />
+        <ul>
+          <% @photo.observations.each do |observation| %>
+            <% if observation.user == @current_user || @photo.user == @current_user || @current_user.is_friends(@photo.user) && observation.user == @photo.user %>
+              <li class="comments side-margin-right little-margin-bottom">
+                <strong><%= observation.user.full_name %> said:</strong>
+                <%if @current_user == observation.user %>
+                  <%= link_to "#{observation.body}", observation %>
+                <% else %>
+                  <%= observation.body %>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
 
       <p>
       <%= @photo.inspect if Rails.env.development? %>
