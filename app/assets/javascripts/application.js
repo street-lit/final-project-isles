@@ -57,7 +57,6 @@ $(document).ready( function(){
       },
       success: function (response, users) {
         $('#message_body').val('');
-        $('tr').last().parent().append('<tr><td> ' + response.user.first_name + ' said:</td><td>' + response.body +'</trd></tr>');
         $('#message-container').animate({ scrollTop: $('#message-container')[0].scrollHeight + 100 }, 1000);
       }
     });
