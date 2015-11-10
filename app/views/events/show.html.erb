@@ -6,13 +6,13 @@
       <hr class="grey-text text-lighten-5">
       <br />
 
-      <div class="card amber lighten-5 big-padding">
+      <div class="card big-padding">
         <p>
           <%= @event.description %>
         </p>
       </div>
 
-      <div class="card amber lighten-5 center">
+      <div class="card center">
         <br />
         <%= link_to 'Back', events_path, class: "waves-effect waves-light btn light-green accent-4"  %>
         <%= link_to 'Edit', edit_event_path(@event, :friend_id => @event.friend_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left"  %>

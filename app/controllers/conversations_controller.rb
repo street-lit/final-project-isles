@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
     authorize @conversation
     respond_to do |format|
       format.html { }
-      format.json {render json: @conversation.messages.to_json(:include => :user) }
+      format.json {render json: @conversation.messages.to_json(:include => [:user, :friend], :methods => [:image_url]) }
     end
   end
 

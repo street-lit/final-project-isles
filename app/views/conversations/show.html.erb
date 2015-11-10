@@ -4,23 +4,14 @@
       <br />
       <h3 class="grey-text text-lighten-5 blogs center"><%= @conversation.title %></h3>
 
-      <div id="message-container" class="white scroll card z-depth-3">
-        <table>
-          <tbody>
-            <% @conversation.messages.each do |message| %>
-              <tr>
-                <td class=<%= 'blue-text' if message.user != @current_user %>><%= message.user.first_name %> said: </td>
-                <td class="side-margin-left"><%= message.body %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <div id="message-container" class="white scroll card z-depth-3 big-padding">
+
       </div>
 
       <br />
       <div id="convoId" style="display: none"><%= @conversation.id %></div>
 
-      <div class="card search amber lighten-5">
+      <div class="card search">
         <%= render 'new_message_form' %>
 
         <%= link_to 'Back', conversations_path, class: "waves-effect waves-light btn light-green accent-4"  %>

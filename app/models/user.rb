@@ -69,4 +69,8 @@ class User < ActiveRecord::Base
       friend.albums
     end
   end
+
+  def image_url
+    image.url(:thumb)
+  end
 end

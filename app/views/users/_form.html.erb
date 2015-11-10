@@ -65,7 +65,7 @@
     <% if @user.birthday %>
       <%= f.text_field :birthday, class: "datepicker", value: @user.birthday.strftime("%B %e, %Y") %>
     <% else %>
-      <%= f.text_field :birthday %>
+      <%= f.text_field :birthday, class: "datepicker" %>
     <% end %>
   </div>
   <div class="field">

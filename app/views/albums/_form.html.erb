@@ -1,4 +1,4 @@
-<div class="card decent-padding">
+<div class="card big-padding">
   <%= form_for(@album) do |f| %>
     <% if @album.errors.any? %>
       <div id="error_explanation">
@@ -13,11 +13,11 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :title %><br>
+      <%= f.label :title, "Album Title" %><br>
       <%= f.text_field :title %>
     </div>
     <div class="field">
-      <%= f.label :description %><br>
+      <%= f.label :description, "Album Description" %><br>
       <%= f.text_area :description %>
     </div>
     <br />

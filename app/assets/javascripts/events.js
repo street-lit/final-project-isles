@@ -1,4 +1,4 @@
 $('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 200
-  });
+	selectMonths: true,
+	selectYears: 200
+});

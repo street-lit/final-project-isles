@@ -3,14 +3,14 @@
     <div class='m12'>
     <br /><br />
 
-      <div class="card amber lighten-5 decent-padding margin-show-photo">
+      <div class="card decent-padding margin-show-photo">
         <div class="center">
           <%= image_tag @photo.image.url(:large) %>
         </div>
       </div>
 
       <% unless @photo.description.empty? && @photo.location.empty? %>
-        <div class="card decent-padding amber lighten-5">
+        <div class="card decent-padding">
           <% unless @photo.description.empty? %>
               <p>
                 <strong>Description:</strong>

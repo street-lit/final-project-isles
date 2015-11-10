@@ -6,12 +6,12 @@
       <br />
       <% @friends.each do |friend| %>
         <% unless friend.events.empty? %>
-          <div class="card amber lighten-5 decent-padding">
+          <div class="card big-padding">
             <h3 class="little-margin-top"><%= friend.friend_not_user(@current_user) %></h3>
           </div>
 
           <% friend.events.each do |event| %>
-            <div class="card decent-padding">
+            <div class="card big-padding">
               <h4><%= event.dateof.strftime("%B %e, %Y") %></h4>
               <h5><%= event.occasion %></h5>
               <p class="decent-margin-bottom"><%= event.description %></p>
@@ -28,8 +28,8 @@
       <% end %>
       <% @friends.each do |friend| %>
         <% if friend.events.empty? %>
-          <div class="card amber lighten-5 decent-padding center">
-            <h4 class="little-margin-top">You don't have any events with <%= "#{friend.friend_not_user(@current_user)}"%> yet...</h4>
+          <div class="card big-padding">
+            <h4 class="little-margin-top blue-text">You don't have any events with <%= "#{friend.friend_not_user(@current_user)}"%> yet...</h4>
             <p><%= link_to "Create An Event!", new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %></p>
           </div>
           <br />

@@ -3,7 +3,7 @@
   <div class='container'>
     <div class='row'>
       <div class='m12 m4 l4'>
-        <div class="card amber lighten-5">
+        <div class="card">
           <h1 class="center "><%= @blog.title %></h1>
           <h5 class="center decent-margin-top pacifico-font">
             <%= @blog.description %>
@@ -32,7 +32,7 @@
           <% end %>
         <% end %>
 
-        <div class="card amber lighten-5 center">
+        <div class="card center">
           <br />
           <%= link_to 'Back', blogs_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" %>
           <%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>

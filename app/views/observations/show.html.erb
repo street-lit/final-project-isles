@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="card amber lighten-5 center">
+      <div class="card center">
         <br />
         <%= link_to 'Edit', edit_observation_path(:user_id => @observation.user, :album_id => @observation.album, :photo_id => @observation.photo), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @observation.user_id == @current_user.id %>
         <%= link_to 'Back', @observation.photo, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>

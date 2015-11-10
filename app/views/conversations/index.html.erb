@@ -6,8 +6,8 @@
       <br />
       <% @conversations.each do |conversation| %>
         <% if @current_user.id == conversation.friend.friend_requester_id || @current_user.id == conversation.friend.friend_accepter_id %>
-          <div class="card amber lighten-5 center">
-            <h4 class="pacifico-font"><%= conversation.title %></h4>
+          <div class="card big-padding">
+            <h4 class="arimo-font blue-text"><%= conversation.title %></h4>
             <p><%= link_to 'Conversation', conversation, class: "waves-effect waves-light btn light-green accent-4" %><p>
             <br />
           </div>

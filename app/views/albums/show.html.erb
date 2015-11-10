@@ -18,7 +18,7 @@
         <br />
       <% end %>
 
-      <div class="card amber lighten-5 center">
+      <div class="card center">
         <br />
         <%= link_to 'Back to Albums', albums_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
         <%= link_to 'Add New Photo', new_photo_path(:album_id => @album.id, :user_id => @album.user_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @album.user_id == @current_user.id %>
