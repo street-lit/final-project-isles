@@ -2,8 +2,9 @@
   <div class='row'>
     <div class='m12 m4 l4'>
       <br />
-      <h3 class="grey-text text-lighten-5 blogs center"><%= @conversation.title %></h3>
-
+      <h3 class="grey-text text-lighten-5 blogs center">Your conversation with <%= @conversation.friend.other_user(@current_user).full_name %></h3>
+      <hr class="grey-text text-lighten-5">
+      <br />
       <div id="message-container" class="white scroll card z-depth-3 big  -padding">
 
       </div>
@@ -20,3 +21,4 @@
   </div>
 </div>
 <br />
+

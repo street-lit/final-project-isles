@@ -6,7 +6,7 @@ class SessionPolicy < ApplicationPolicy
     @session = session
   end
 
-  # def new?
-  #   @session.user_id == @current_user.id || @session == nil
-  # end
+  def new?
+    @session == false
+  end
 end

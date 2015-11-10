@@ -34,6 +34,10 @@ h2, h3, h4 {
   line-height: 1.5em;
 }
 
+div.parallax-height {
+  height: 25px;
+}
+
 //Class and specific element styling
 
 h2.album {
@@ -200,7 +204,7 @@ img.bg {
 .intro {
     text-align: center;
     padding-top: 8%;
-    padding-bottom: 25%;
+    padding-bottom: 16%;
     margin-bottom: 50px;
 }
 

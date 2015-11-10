@@ -1,47 +1,45 @@
 <div class="intro z-depth-1 parallax-container no-margin-bottom">
   <div class="parallax"><%= image_tag "landing_page.jpg" %></div>
-  <h1 class="grey-text text-lighten-5"><%= @current_user.full_name%></h1>
-  <h5 clas="grey lighten-4 grey-text text-darken-1">We're happy you're here!</h5>
+  <div class="container">
+    <h1 class="grey-text text-lighten-5"><%= @current_user.full_name%></h1>
+    <hr class="grey-text text-lighten-5">
+    <h5 clas="grey lighten-4 grey-text text-darken-1">We're happy you're here!</h5>
+  </div>
 </div>
 
 <div class="card no-margin">
   <div class='container'>
     <div class='row'>
       <div class='m12 m4 l4'>
-        <br />
         <% if @current_user.has_friend_requests %>
-          <p><strong>reverse_requests: </strong><%= @current_user.reverse_requests.inspect %></p>
-          <h2>Friend Requests</h2>
-          <ul>
-            <% @current_user.reverse_requested_friends.each do |user| %>
-              <% if !@current_user.is_friends(user) %>
-                <% if user.requests.where(requested_friend_id: @current_user.id).first.did_confirm == false %>
-                  <li><%= user.full_name %>
-                  <%= link_to "Accept", accept_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
-                  <%= link_to "Deny", deny_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4" %>
-                  <p><strong>Request: </strong><%= user.requests.where(requested_friend_id: @current_user.id).first.inspect %></p>
-                  </li>
+          <br />
+          <div class="card big-padding">
+            <h2 class="no-margin">Friend Requests</h2>
+            <ul>
+              <% @current_user.reverse_requested_friends.each do |user| %>
+                <% if !@current_user.is_friends(user) %>
+                  <% if user.requests.where(requested_friend_id: @current_user.id).first.did_confirm == false %>
+                    <li>
+                    <h5><%= user.full_name %></h5>
+                    <br />
+                    <%= link_to "Accept", accept_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn light-green accent-4 left" %>
+                    <%= link_to "Deny", deny_path(user_id: user.id, requested_friend_id: @current_user.id), method: :PUT, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-left left" %>
+                    </li>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          </ul>
-        <% end %>
-
-        <% if @current_user.blogs.empty? %>
-          <div>
-            <h3 class="center-text">You haven't written anything yet, would you like to start a blog?</h3>
-            <p class="center-text"><%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+            </ul>
           </div>
         <% end %>
 
-        <% if @current_user.albums.empty? %>
-          <h3 class="center-text">You don't have any photo albums yet, would you like to upload some photos to share with your friends?</h3>
-          <p class="center-text"><%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
-        <% end %>
-
-        <div>
+        <% if @current_user.albums.empty? && !@current_user.blogs.empty? %>
+          <div>
+            <h3 class="center-text">You don't have any photo albums yet, would you like to upload some photos to share with your friends?</h3>
+            <p class="center-text"><%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+          </div>
+          <br />
           <div class="row">
-            <div class="col s12 m4 l4">
+            <div class="col s12 m12 offset-l2 l8">
               <div class="card center">
                 <% unless @current_user.blogs.empty? %>
                   <h5>Blogs</h5>
@@ -52,7 +50,89 @@
                 <% end %>
               </div>
             </div>
-            <div class="col s12 m4 l4">
+          </div>
+        <% end %>
+
+        <% if @current_user.blogs.empty? && !@current_user.albums.empty? %>
+          <div>
+            <h3 class="center-text">You haven't written anything yet, would you like to start a blog?</h3>
+            <p class="center-text"><%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col s12 m12 offset-l2 l8">
+              <div class="card center">
+                <% unless @current_user.albums.empty? %>
+                  <h5>Albums</h5>
+                    <% @current_user.albums.each do |album| %>
+                      <hr>
+                      <h5 class="pacifico-font"><%= link_to( "#{album.title}", album ) %></h5>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% if @current_user.blogs.empty? && @current_user.albums.empty? %>
+          <div>
+            <h3 class="center-text">You haven't written anything yet, would you like to start a blog?</h3>
+            <p class="center-text"><%= link_to "Start writing", new_blog_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+          </div>
+          <br />
+          <div>
+            <h3 class="center-text"> Or...</h3>
+          </div>
+          <br />
+          <div>
+            <h3 class="center-text">You don't have any photo albums yet, would you like to upload some photos to share with your friends?</h3>
+            <p class="center-text"><%= link_to "Start sharing", new_album_path, class: "waves-effect waves-light btn light-green accent-4" %></p>
+          </div>
+          <br />
+        <% end %>
+
+        <% if !@current_user.blogs.empty? && !@current_user.albums.empty? %>
+          <br />
+          <div class="row">
+            <div class="col s12 m6 l6">
+              <div class="card center">
+                <% unless @current_user.blogs.empty? %>
+                  <h5>Blogs</h5>
+                    <% @current_user.blogs.each do |blog| %>
+                      <hr>
+                      <h5 class="pacifico-font"><%= link_to( "#{blog.title}", blog ) %></h5>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col s12 m6 l6">
+              <div class="card center">
+                <% unless @current_user.albums.empty? %>
+                <h5>Photos</h5>
+                  <% @current_user.albums.each do |album| %>
+                      <hr>
+                      <h5 class="pacifico-font"><%= link_to "#{album.title}", album %></h5>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+    <!--<div>
+          <div class="row">
+            <div class="col s12 m4 l6">
+              <div class="card center">
+                <% unless @current_user.blogs.empty? %>
+                  <h5>Blogs</h5>
+                    <% @current_user.blogs.each do |blog| %>
+                      <hr>
+                      <h5 class="pacifico-font"><%= link_to( "#{blog.title}", blog ) %></h5>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col s12 m4 l6">
               <div class="card center">
                 <% unless @current_user.albums.empty? %>
                 <h5>Photos</h5>
@@ -84,19 +164,22 @@
               </ul>
             </div>
           </div>
-        </div>
-
+        </div> -->
         <% if @current_user.has_pending_friend_requests %>
-          <h2>Pending Friend Requests</h2>
-          <ul>
-            <% @current_user.requests.each do |request| %>
-              <% unless request.did_confirm == true %>
-                <li>
-                  <%= request.requested_friend.full_name %><%= link_to "Cancel", request, method: :DELETE, class: "waves-effect waves-light btn light-green accent-4" %><p>Params: <%= request.inspect %></p>
-                </li>
+          <div class="card big-padding">
+            <h2>Pending Friend Requests</h2>
+            <ul>
+              <% @current_user.requests.each do |request| %>
+                <% unless request.did_confirm == true %>
+                  <li>
+                    <h5><%= request.requested_friend.full_name %></h5>
+                    <br />
+                    <%= link_to "Cancel", request, method: :DELETE, class: "waves-effect waves-light btn light-green accent-4" %>
+                  </li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ul>
+            </ul>
+          </div>
         <% end %>
       </div>
     </div>

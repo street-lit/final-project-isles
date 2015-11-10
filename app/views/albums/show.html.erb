@@ -1,11 +1,9 @@
 <div class='container'>
   <div class='row'>
     <div class='m12 m4 l4'>
-
       <h1 class="grey-text text-lighten-5 blogs center"><%= @album.title %></h1>
       <hr class="grey-text text-lighten-5">
       <h4 class="grey-text text-lighten-5 blogs center pacifico-font"><%= @album.description %></h4>
-
       <%= link_to @album, class: "center" do %>
         <div class="card row big-padding-left">
           <% @album.photos.each do |photo| %>
@@ -29,3 +27,4 @@
     </div>
   </div>
 </div>
+
