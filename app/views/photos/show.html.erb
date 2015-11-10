@@ -1,16 +1,16 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
     <br /><br />
 
-      <div class="card decent-padding margin-show-photo">
+      <div class="card big-padding margin-show-photo">
         <div class="center">
           <%= image_tag @photo.image.url(:large) %>
         </div>
       </div>
 
       <% unless @photo.description.empty? && @photo.location.empty? %>
-        <div class="card decent-padding">
+        <div class="card big-padding">
           <% unless @photo.description.empty? %>
               <p>
                 <strong>Description:</strong>

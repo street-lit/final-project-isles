@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
       <h1 class="center grey-text text-lighten-5 blogs"><%= @event.occasion %></h1>
       <h3 class="center grey-text text-lighten-5 blogs">happened on <%= @event.dateof.strftime("%B %e, %Y") %>, with <%= @event.friend.other_user(@current_user).full_name %></h3>
       <hr class="grey-text text-lighten-5">
@@ -12,9 +12,9 @@
         </p>
       </div>
 
-      <div class="card center">
+      <div class="card">
         <br />
-        <%= link_to 'Back', events_path, class: "waves-effect waves-light btn light-green accent-4"  %>
+        <%= link_to 'Back', events_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left"  %>
         <%= link_to 'Edit', edit_event_path(@event, :friend_id => @event.friend_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left"  %>
         <br /><br />
       </div>

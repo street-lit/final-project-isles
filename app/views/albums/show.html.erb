@@ -1,10 +1,10 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
 
       <h1 class="grey-text text-lighten-5 blogs center"><%= @album.title %></h1>
       <hr class="grey-text text-lighten-5">
-      <h4 class="grey-text text-lighten-5 blogs center"><%= @album.description %></h4>
+      <h4 class="grey-text text-lighten-5 blogs center pacifico-font"><%= @album.description %></h4>
 
       <%= link_to @album, class: "center" do %>
         <div class="card row big-padding-left">
@@ -18,7 +18,7 @@
         <br />
       <% end %>
 
-      <div class="card center">
+      <div class="card">
         <br />
         <%= link_to 'Back to Albums', albums_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
         <%= link_to 'Add New Photo', new_photo_path(:album_id => @album.id, :user_id => @album.user_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @album.user_id == @current_user.id %>

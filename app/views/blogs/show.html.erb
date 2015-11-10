@@ -3,22 +3,17 @@
   <div class='container'>
     <div class='row'>
       <div class='m12 m4 l4'>
-        <div class="card">
-          <h1 class="center "><%= @blog.title %></h1>
-          <h5 class="center decent-margin-top pacifico-font">
+          <h1 class="grey-text text-lighten-5 blogs center"><%= @blog.title %></h1>
+          <hr class="grey-text text-lighten-5" />
+          <h4 class="grey-text text-lighten-5 blogs center pacifico-font">
             <%= @blog.description %>
-          </h5>
+          </h4>
 
-          <p class="center pacifico-font">
-            <%= link_to "#{@blog.user.full_name}", @blog.user unless @blog.user == @current_user%>
-          </p>
           <br />
-        </div>
-        <br />
 
         <% unless @blog.posts.empty? %>
           <% @blog.posts.each do |post| %>
-            <div class="z-depth-1 vert-center">
+            <div class="z-depth-1">
               <ul class="collection">
                 <li class="collection-item">
                   <h4><%= link_to( "#{post.title}", post ) %></h4>
@@ -32,7 +27,7 @@
           <% end %>
         <% end %>
 
-        <div class="card center">
+        <div class="card">
           <br />
           <%= link_to 'Back', blogs_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" %>
           <%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>

@@ -21,7 +21,7 @@
 $(document).ready( function(){
   $(".button-collapse").sideNav();
   $('#message-container').animate({ scrollTop: $('#message-container')[0].scrollHeight + 100 }, 1000);
-
+  $('.tooltipped').tooltip({delay: 50});
   var pingAfter = 2000;
   var convo = "/conversations/" + $('#convoId').html();
   var refreshId = setInterval(function() {

@@ -1,10 +1,10 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
       <h3 class="center grey-text text-lighten-5 blogs">Your comment</h3>
       <div class="card">
         <div>
-          <h5 class="decent-padding">
+          <h5 class="big-padding">
             In the album, "<%= "#{@observation.album.title}" %>", <strong> <%= @observation.user.full_name %></strong> said, "<%="#{ @observation.body }"%>"
             <% unless @observation.photo.description.empty? || @observation.photo.description.nil? %>
               on the photo, "<%= "#{@observation.photo.description}" %>"
@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <div class="card center">
+      <div class="card">
         <br />
         <%= link_to 'Edit', edit_observation_path(:user_id => @observation.user, :album_id => @observation.album, :photo_id => @observation.photo), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @observation.user_id == @current_user.id %>
         <%= link_to 'Back', @observation.photo, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>

@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
       <h3 class="center grey-text text-lighten-5 blogs">Your comment</h3>
       <div class="card">
         <div>
@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <div class="card center">
+      <div class="card">
         <br />
         <%= link_to 'Edit Comment', edit_comment_path(:user_id => @comment.user, :blog_id => @comment.blog, :post_id => @comment.post), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @comment.user_id == @current_user.id %>
         <%= link_to 'Back', @comment.post, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>

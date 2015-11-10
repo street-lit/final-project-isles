@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
       <h1 class="grey-text text-lighten-5 blogs center">Albums</h1>
       <hr class="grey-text text-lighten-5">
       <br />
@@ -54,9 +54,9 @@
       <br>
 
       <% unless @current_user.albums.empty? %>
-        <div class="card center">
+        <div class="card">
           <br />
-            <%= link_to 'New Album', new_album_path, class: "waves-effect waves-light btn light-green accent-4" %>
+            <%= link_to 'New Album', new_album_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left" %>
           <br /><br />
         </div>
       <% end %>

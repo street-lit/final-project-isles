@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='m12'>
+    <div class='m12 m4 l4'>
       <h1 class="grey-text text-lighten-5 blogs center">Friends</h1>
       <hr class="grey-text text-lighten-5">
       <br />
@@ -11,16 +11,16 @@
             <h5 class="arimo-font blue-text"><%= link_to "#{friend.other_user(@current_user).full_name}", user_path(friend.other_user(@current_user) ), class: "black-text" %></h5>
               <p>
                 <%= link_to 'Create an event', new_event_path(:friend_id => friend.id), class: "waves-effect waves-light btn light-green accent-4" %>
-                <%= link_to 'X', friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 right"%>
+                <%= link_to 'X', friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 right tooltipped", "data-position": "top", "data-delay": "50", "data-tooltip": "Unfriend" %>
               </p>
               <br /><hr>
           <% end %>
         </div>
       <% end %>
       <br />
-      <div class="card center">
+      <div class="card">
         <br />
-        <%= link_to "Find More Friends", users_path, class: "waves-effect waves-light btn light-green accent-4" %>
+        <%= link_to "Find More Friends", users_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left" %>
         <br /><br />
       </div>
     </div>
