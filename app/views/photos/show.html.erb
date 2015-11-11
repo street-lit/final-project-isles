@@ -61,7 +61,7 @@
         <ul class="list-observations">
           <% @photo.observations.each do |observation| %>
             <% if observation.user == @current_user || @photo.user == @current_user || @current_user.is_friends(@photo.user) && observation.user == @photo.user %>
-              <li class="comments side-margin-left side-margin-right little-margin-bottom">
+              <li class="comments side-margin-left side-margin-right little-margin-bottom bigger">
                 <strong><%= observation.user.full_name %> said:</strong>
                 <%if @current_user == observation.user %>
                   <%= link_to "#{observation.body}", observation %>
