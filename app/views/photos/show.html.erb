@@ -27,7 +27,7 @@
       <% end %>
       <br />
 
-      <div class="card">
+      <div class="card big-padding">
         <section class="observations side-margin-left side-margin-right">
           <h3>Comments <%= "(#{@photo.observations.count})" if @photo.user == @current_user %></h3>
           <%= form_for(@observation) do |f| %>
@@ -43,12 +43,21 @@
           <% end %>
         </section>
 
-
-        <%= link_to "Back", @photo.album, class: "waves-effect waves-light btn light-green accent-4 left side-margin-left" %>
-        <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @photo.user_id == @current_user.id %>
-        <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @photo.user_id == @current_user.id %>
-        <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @photo.user_id == @current_user.id %>
-        <br /><br /><br />
+        <div class="row">
+          <div class="col s12 m2 l2">
+            <%= link_to "Back", @photo.album, class: "waves-effect waves-light btn light-green accent-4  left little-margin-top side-margin-left" %>
+          </div>
+          <div class="col s12 m2 l2">
+            <%= link_to 'Add New Photo', new_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 left little-margin-top side-margin-left" if @photo.user_id == @current_user.id %>
+          </div>
+          <div class="col s12 m2 l2">
+            <%= link_to 'Edit Photo', edit_photo_path(:user_id => @photo.user_id, :album_id => @photo.album_id), class: "waves-effect waves-light btn light-green accent-4 left little-margin-top side-margin-left" if @photo.user_id == @current_user.id %>
+          </div>
+          <div class="col s12 m1 offset-m3 l3 offset-l3">
+            <%= link_to 'Delete Photo', photo_path(@photo), method: :DELETE, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 big-margin-right left little-margin-top side-margin-left big-margin-right" if @photo.user_id == @current_user.id %>
+          </div>
+        </div>
+        <hr><br />
         <ul class="list-observations">
           <% @photo.observations.each do |observation| %>
             <% if observation.user == @current_user || @photo.user == @current_user || @current_user.is_friends(@photo.user) && observation.user == @photo.user %>
@@ -64,7 +73,7 @@
           <% end %>
         </ul>
       </div>
-
     </div>
   </div>
+  <br />
 </div>

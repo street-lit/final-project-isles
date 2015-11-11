@@ -27,20 +27,20 @@
           <% end %>
         <% end %>
 
-        <div class="card">
+        <div class="card big padding">
           <br />
           <div class="row">
-            <div class="col s12 m3 l3">
+            <div class="col s12 m2 l2">
               <%= link_to 'Back', blogs_path, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" %>
             </div>
-            <div class="col s12 m3 l3">
-              <%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4 big-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>
+            <div class="col s12 m2 l2">
+              <%= link_to 'New Post', new_post_path(:blog_id => @blog, :user_id => @blog), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>
             </div>
-            <div class="col s12 m3 l3">
+            <div class="col s12 m2 l2">
               <%= link_to 'Edit Blog', edit_blog_path(@blog.id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>
             </div>
-            <div class="col s12 m3 l3">
-              <%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 big-margin-right big-margin-left left little-margin-top" if @blog.user_id == @current_user.id %>
+            <div class="col s12 m4 offset-m2 l3 offset-l3">
+              <%= link_to 'Delete Blog', @blog, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 big-margin-right left little-margin-top side-margin-left" if @blog.user_id == @current_user.id %>
             </div>
           </div>
         </div>

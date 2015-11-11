@@ -13,7 +13,7 @@
           </p>
         </div>
 
-        <div class="card">
+        <div class="card big-padding">
           <section class="comments side-margin-left side-margin-right">
             <h3>Comments <%= "(#{@post.comments.count})" if @post.user == @current_user %></h3>
             <%= form_for(@comment) do |f| %>
@@ -29,11 +29,18 @@
             <% end %>
           </section>
 
-
-          <%= link_to 'Back', @post.blog, class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" %>
-          <%= link_to 'Edit Post', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4 side-margin-left left" if @post.user_id == @current_user.id %>
-          <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 side-margin-right right" if @post.user_id == @current_user.id%>
-          <br /><br /><br />
+          <div class="row">
+            <div class="col s12 m2 l2">
+              <%= link_to 'Back', @post.blog, class: "waves-effect waves-light btn light-green accent-4  left little-margin-top side-margin-left" %>
+            </div>
+            <div class="col s12 m2 l2">
+              <%= link_to 'Edit Post', edit_post_path(:user_id => @post.user_id, :blog_id => @post.blog_id), class: "waves-effect waves-light btn light-green accent-4 left little-margin-top side-margin-left" if @post.user_id == @current_user.id %>
+            </div>
+            <div class="col s12 m1 offset-m5 l1 offset-l5">
+              <%= link_to 'Delete Post', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn deep-orange accent-3 big-margin-right left little-margin-top side-margin-left side-margin-right" if @post.user_id == @current_user.id%>
+            </div>
+          </div>
+          <hr><br />
           <ul class="list-comments">
             <% @post.comments.each do |comment| %>
               <% if comment.user == @current_user || @post.user == @current_user || @current_user.is_friends(@post.user) && comment.user == @post.user %>
@@ -48,7 +55,6 @@
               <% end %>
             <% end %>
           </ul>
-          <br /><br />
         </div>
 
       </div>
