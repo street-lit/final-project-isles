@@ -83,6 +83,10 @@ body {
   margin-left: 30px;
 }
 
+.big-margin-right {
+  margin-right: 30px;
+}
+
 .big-margin-bottom {
   margin-bottom: 25px;
 }
@@ -95,6 +99,9 @@ body {
   padding-left: 30px;
 }
 
+.big-padding-right {
+  padding-right: 30px;
+}
 
 .bigger {
   font-size: 1.3em;
@@ -125,6 +132,14 @@ body {
   margin: 15px;
 }
 
+.decent-margin-left {
+  margin-left: 15px;
+}
+
+.decent-margin-right {
+  margin-right: 15px;
+}
+
 .decent-margin-top {
   margin-top: 15px;
 }
@@ -135,6 +150,10 @@ body {
 
 .decent-padding {
   padding: 15px;
+}
+
+.decent-padding-right {
+  padding-right: 15px;
 }
 
 footer h5 {
@@ -156,6 +175,10 @@ footer .row{
 
 .headings {
   height: 230px;
+}
+
+.home-height {
+  min-height: 335px;
 }
 
 img.bg {
@@ -242,16 +265,16 @@ img.bg {
   margin: 5px;
 }
 
-.little-pad-right {
-  padding-right: 5px;
-}
-
 .little-margin-top {
   margin-top: 5px;
 }
 
 .little-margin-bottom {
   margin-bottom: 5px;
+}
+
+.little-pad-right {
+  padding-right: 5px;
 }
 
 #login {
