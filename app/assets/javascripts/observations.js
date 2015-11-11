@@ -13,7 +13,7 @@ $('#newObservation').on('click', function () {
     },
     success: function (response) {
       $('#observation_body').val('');
-      $('.list-observations').append('<li class="observations side-margin-left side-margin-right little-margin-bottom"><strong>' + response.user.first_name + ' ' + response.user.last_name + ' said:</strong> ' + response.body + '</li>');
+      $('.list-observations').append('<li class="observations side-margin-left side-margin-right little-margin-bottom bigger"><strong>' + response.user.first_name + ' ' + response.user.last_name + ' said:</strong> ' + response.body + '</li>');
     }
   });
 });

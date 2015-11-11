@@ -44,7 +44,7 @@
           <ul class="list-comments">
             <% @post.comments.each do |comment| %>
               <% if comment.user == @current_user || @post.user == @current_user || @current_user.is_friends(@post.user) && comment.user == @post.user %>
-                <li class="comments side-margin-left side-margin-right little-margin-bottom">
+                <li class="comments side-margin-left side-margin-right little-margin-bottom bigger">
                   <strong><%= comment.user.full_name %> said:</strong>
                   <%if @current_user == comment.user %>
                     <%= link_to "#{comment.body}", comment %>
