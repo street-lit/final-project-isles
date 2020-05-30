@@ -48,7 +48,7 @@ end
 gem 'devise'
 gem 'react-rails', '~> 1.4.0'
 gem 'faker'
-gem 'kaminari'
+gem 'kaminari', '>= 1.2.1'
 gem 'bcrypt'
 group :production do
   gem 'puma'
